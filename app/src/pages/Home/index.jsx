@@ -1,18 +1,17 @@
-import { NavLink } from "react-router-dom";
+import Header from "../../components/Header/";
 import FormCreateEmployee from "../../components/FormCreateEmployee/";
 
 function Home() {
   return (
-    <main>
-      <div className="title">
-        <h1>HRnet</h1>
-      </div>
-      <div className="container">
-        <NavLink to="/Employee">View Current Employees</NavLink>
+    <>
+      <Header link="/Employee" label="View Current Employees" />
+      <main className="wrapper">
         <h2>Create Employee</h2>
-        <FormCreateEmployee />
-      </div>
-    </main>
+        <section className="content">
+          <FormCreateEmployee />
+        </section>
+      </main>
+    </>
   );
 }
 

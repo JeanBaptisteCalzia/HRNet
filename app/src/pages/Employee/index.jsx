@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import Header from "../../components/Header/";
+
 function Employee() {
   return (
-    <main>
-      <div id="employee-div" className="container">
-        <h1>Current Employees</h1>
-        <NavLink to="/">Home</NavLink>
-      </div>
-    </main>
+    <>
+      <Header link="/" label="Home" />
+      <main className="wrapper">
+        <h2>Current Employees</h2>
+      </main>
+    </>
   );
 }
 

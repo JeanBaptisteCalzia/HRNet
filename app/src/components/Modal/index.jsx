@@ -3,10 +3,10 @@ function Modal({ handleClose }) {
     <div className="modal">
       <div className="modal__body">
         <h1>Employee Created!</h1>
+        <button className="modal__close-btn" onClick={() => handleClose()}>
+          Close
+        </button>
       </div>
-      <button className="modal__close-btn" onClick={() => handleClose()}>
-        Close
-      </button>
     </div>
   );
 }

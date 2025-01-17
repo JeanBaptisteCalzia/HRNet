@@ -133,7 +133,14 @@ function FormCreateEmployee() {
           })}
         </select>
 
-        <button onClick={() => setShowModal(true)}>Save</button>
+        <div className="bottom-section">
+          <button
+            className="btn btn--secondary"
+            onClick={() => setShowModal(true)}
+          >
+            Save
+          </button>
+        </div>
       </form>
       {showModal && <Modal handleClose={handleClose} />}
     </>
