@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Modal from "../../components/Modal/";
+import { states } from "../../data/states/";
+import { department } from "../../data/department/";
 
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
@@ -89,15 +91,20 @@ function FormCreateEmployee() {
           />
 
           <label htmlFor="state">State</label>
+
           <select
             id="state"
             name="state"
             value={formData.state}
             onChange={handleChange}
           >
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            {states.map((data, index) => {
+              return (
+                <option key={index} value={data.name}>
+                  {data.name}
+                </option>
+              );
+            })}
           </select>
 
           <label htmlFor="zipCode">Zip Code</label>
@@ -117,11 +124,13 @@ function FormCreateEmployee() {
           value={formData.department}
           onChange={handleChange}
         >
-          <option value="Sales">Sales</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Human Resources">Human Resources</option>
-          <option value="Legal">Legal</option>
+          {department.map((data, index) => {
+            return (
+              <option key={index} value={data.name}>
+                {data.name}
+              </option>
+            );
+          })}
         </select>
 
         <button onClick={() => setShowModal(true)}>Save</button>
