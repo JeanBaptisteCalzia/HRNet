@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Modal from "../../components/Modal/";
 
 function FormCreateEmployee() {
+  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,6 +22,10 @@ function FormCreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
   };
 
   return (
@@ -111,15 +117,16 @@ function FormCreateEmployee() {
           value={formData.department}
           onChange={handleChange}
         >
-          <option>Sales</option>
-          <option>Marketing</option>
-          <option>Engineering</option>
-          <option>Human Resources</option>
-          <option>Legal</option>
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
         </select>
-      </form>
 
-      <button>Save</button>
+        <button onClick={() => setShowModal(true)}>Save</button>
+      </form>
+      {showModal && <Modal handleClose={handleClose} />}
     </>
   );
 }
