@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../../components/DateInput/dateInput.scss";
 
 function DateInput({ value, onChange }) {
@@ -6,6 +6,7 @@ function DateInput({ value, onChange }) {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [currentDay, setCurrentDay] = useState(new Date().getDate());
+  const datePickerElem = useRef();
 
   const monthName = [
     "January",
@@ -40,6 +41,24 @@ function DateInput({ value, onChange }) {
     );
   }
 
+  useEffect(() => {
+    const handler = (event) => {
+      if (!datePickerElem.current) {
+        return;
+      }
+      // if click is outside of the date picker element
+      if (!datePickerElem.current.contains(event.target)) {
+        setShowPopup(false);
+      }
+    };
+    // the key is using the `true` option
+    // `true` will enable the `capture` phase of event handling by browser
+    document.addEventListener("click", handler, true);
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, []);
+
   return (
     <div>
       <input
@@ -52,7 +71,7 @@ function DateInput({ value, onChange }) {
       />
 
       {showPopup && (
-        <div className="date-popup">
+        <div className="date-popup" ref={datePickerElem}>
           <div className="year">{currentYear}</div>
           <div className="date-control">
             <button className="btn" type="button" onClick={navigateToPrevMonth}>
