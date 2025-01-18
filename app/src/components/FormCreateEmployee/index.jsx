@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "../../components/Modal/";
+import DateInput from "../../components/DateInput/";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
 import "../../components/FormCreateEmployee/formCreateEmployee.scss";
@@ -62,13 +63,15 @@ function FormCreateEmployee() {
         />
 
         <label htmlFor="startDate">Start Date</label>
-        <input
+        {/* <input
           id="startDate"
           type="text"
           name="startDate"
           value={formData.startDate}
           onChange={handleChange}
-        />
+        /> */}
+
+        <DateInput value={formData.startDate} onChange={handleChange} />
 
         <fieldset className="address">
           <legend>Address</legend>
