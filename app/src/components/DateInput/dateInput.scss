@@ -11,8 +11,14 @@
 
   .date-control {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 1rem 0;
+
+    span {
+      width: 10rem;
+      text-align: center;
+    }
 
     .btn {
       border: 0;
@@ -31,5 +37,6 @@
   .date-popup__grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
+    text-align: center;
   }
 }

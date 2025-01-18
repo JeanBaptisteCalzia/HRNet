@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import "../../components/DateInput/dateInput.scss";
 
 function DateInput({ value, onChange }) {
@@ -75,11 +77,11 @@ function DateInput({ value, onChange }) {
           <div className="year">{currentYear}</div>
           <div className="date-control">
             <button className="btn" type="button" onClick={navigateToPrevMonth}>
-              prev.
+              <FontAwesomeIcon icon={faAngleLeft} />
             </button>
             <span>{monthName[currentMonth]}</span>
             <button className="btn" type="button" onClick={navigateToNextMonth}>
-              next
+              <FontAwesomeIcon icon={faAngleRight} />
             </button>
           </div>
           <div className="date-popup__grid">
