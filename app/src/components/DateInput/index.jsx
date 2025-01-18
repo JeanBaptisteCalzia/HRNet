@@ -62,7 +62,7 @@ function DateInput({ value, onChange }) {
   }, []);
 
   return (
-    <div>
+    <>
       <input
         id="startDate"
         type="text"
@@ -97,7 +97,7 @@ function DateInput({ value, onChange }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
