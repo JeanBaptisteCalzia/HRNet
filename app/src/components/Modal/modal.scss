@@ -15,6 +15,18 @@
     position: absolute;
     right: 0;
     top: 0;
+    background-color: transparent;
+    border: none;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      font-size: 1.5rem;
+    }
   }
 
   &__body {

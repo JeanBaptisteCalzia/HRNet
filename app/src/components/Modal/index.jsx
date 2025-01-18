@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../../components/Modal/modal.scss";
 
 function Modal({ handleClose }) {
@@ -18,7 +20,7 @@ function Modal({ handleClose }) {
       >
         <h1>Employee Created!</h1>
         <button className="modal__close-btn" onClick={() => handleClose()}>
-          Close
+          <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>
     </div>
