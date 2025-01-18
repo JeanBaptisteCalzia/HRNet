@@ -1,0 +1,19 @@
+thead tr {
+  background: transparent;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  unicode-bidi: isolate;
+  border-color: inherit;
+
+  thead th,
+  thead td,
+  tfoot th,
+  tfoot td {
+    padding: 0.5rem 0.625rem 0.625rem;
+    font-weight: bold;
+    text-align: left;
+  }
+}
