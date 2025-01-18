@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "../../components/Header/header.scss";
 
 function Header({ link, label }) {
   return (

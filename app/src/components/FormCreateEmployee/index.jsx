@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal/";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
+import "../../components/FormCreateEmployee/formCreateEmployee.scss";
 
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);

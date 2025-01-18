@@ -1,3 +1,5 @@
+import "../../components/Modal/modal.scss";
+
 function Modal({ handleClose }) {
   return (
     <div className="modal">

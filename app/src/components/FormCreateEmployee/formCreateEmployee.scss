@@ -1,0 +1,46 @@
+form {
+  display: flex;
+  flex-direction: column;
+
+  .btn {
+    max-width: 10rem;
+    width: 10rem;
+  }
+
+  .bottom-section {
+    border-top: 1px solid #ccc;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  label {
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  input,
+  select {
+    max-width: 15rem;
+    min-height: 2rem;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #eee;
+    margin-bottom: 1.5rem;
+
+    legend {
+      color: #333;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
