@@ -1,5 +1,6 @@
 import Header from "../../components/Header/";
 import Table from "../../components/Table/";
+import { tbodyData } from "../../data/tbodyData/";
 
 const theadData = [
   "First Name",
@@ -11,51 +12,6 @@ const theadData = [
   "City",
   "State",
   "Zip Code",
-];
-
-const tbodyData = [
-  {
-    id: "1",
-    items: [
-      "John",
-      "Doe",
-      "07/21/2020",
-      "Engineering",
-      "07/16/1987",
-      "Street",
-      "City",
-      "FR",
-      "23423",
-    ],
-  },
-  {
-    id: "2",
-    items: [
-      "John",
-      "Doe",
-      "07/21/2020",
-      "Engineering",
-      "07/16/1987",
-      "Street",
-      "City",
-      "FR",
-      "23423",
-    ],
-  },
-  {
-    id: "3",
-    items: [
-      "John",
-      "Doe",
-      "07/21/2020",
-      "Engineering",
-      "07/16/1987",
-      "Street",
-      "City",
-      "FR",
-      "23423",
-    ],
-  },
 ];
 
 function Employee() {

@@ -34,8 +34,8 @@ function Table({ theadData, tbodyData }) {
           </tr>
         </thead>
         <tbody>
-          {tbodyData.map((item) => {
-            return <TableRow key={item.id} data={item.items} />;
+          {tbodyData.map((item, index) => {
+            return <TableRow key={index} data={item} />;
           })}
         </tbody>
       </table>

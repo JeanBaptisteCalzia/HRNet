@@ -5,27 +5,21 @@ import { states } from "../../data/states/";
 import { department } from "../../data/department/";
 import "../../components/FormCreateEmployee/formCreateEmployee.scss";
 
+import { tbodyData } from "../../data/tbodyData/";
+
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    startDate: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    department: "",
-  });
+  const [formData, setFormData] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setFormData((values) => ({ ...values, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    tbodyData.push(formData);
   };
 
   return (
@@ -36,7 +30,7 @@ function FormCreateEmployee() {
           type="text"
           name="firstName"
           id="firstName"
-          value={formData.firstName}
+          value={formData.firstName || ""}
           onChange={handleChange}
         />
 
@@ -45,29 +39,21 @@ function FormCreateEmployee() {
           type="text"
           id="lastName"
           name="lastName"
-          value={formData.lastName}
+          value={formData.lastName || ""}
           onChange={handleChange}
         />
 
-        <label htmlFor="dateOfBirth">Date of Birth</label>
+        <label htmlFor="dateBirth">Date of Birth</label>
         <input
-          id="dateOfBirth"
+          id="dateBirth"
           type="text"
-          name="dateOfBirth"
-          value={formData.dateOfBirth}
+          name="dateBirth"
+          value={formData.dateBirth || ""}
           onChange={handleChange}
         />
 
         <label htmlFor="startDate">Start Date</label>
-        {/* <input
-          id="startDate"
-          type="text"
-          name="startDate"
-          value={formData.startDate}
-          onChange={handleChange}
-        /> */}
-
-        <DateInput value={formData.startDate} onChange={handleChange} />
+        <DateInput value={formData.startDate || ""} onChange={handleChange} />
 
         <fieldset className="address">
           <legend>Address</legend>
@@ -77,7 +63,7 @@ function FormCreateEmployee() {
             id="street"
             type="text"
             name="street"
-            value={formData.street}
+            value={formData.street || ""}
             onChange={handleChange}
           />
 
@@ -86,7 +72,7 @@ function FormCreateEmployee() {
             id="city"
             type="text"
             name="city"
-            value={formData.city}
+            value={formData.city || ""}
             onChange={handleChange}
           />
 
@@ -95,7 +81,7 @@ function FormCreateEmployee() {
           <select
             id="state"
             name="state"
-            value={formData.state}
+            value={formData.state || ""}
             onChange={handleChange}
           >
             {states.map((data, index) => {
@@ -112,7 +98,7 @@ function FormCreateEmployee() {
             id="zipCode"
             type="number"
             name="zipCode"
-            value={formData.zipCode}
+            value={formData.zipCode || ""}
             onChange={handleChange}
           />
         </fieldset>
@@ -121,7 +107,7 @@ function FormCreateEmployee() {
         <select
           name="department"
           id="department"
-          value={formData.department}
+          value={formData.department || ""}
           onChange={handleChange}
         >
           {department.map((data, index) => {
