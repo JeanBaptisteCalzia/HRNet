@@ -41,7 +41,7 @@ function Table({ theadData, tbodyData }) {
       </table>
       <div className="table-bottom">
         <div className="table-info">
-          <p>Showing 1 to 10 of 12 entries</p>
+          <p>Showing 1 to 10 of {tbodyData.length} entries</p>
         </div>
         <div className="table-paginate">
           <a className="table-paginate__button previous">Previous</a>
