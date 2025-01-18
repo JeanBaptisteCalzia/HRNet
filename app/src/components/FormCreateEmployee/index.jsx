@@ -28,10 +28,6 @@ function FormCreateEmployee() {
     e.preventDefault();
   };
 
-  const handleClose = () => {
-    setShowModal(false);
-  };
-
   return (
     <>
       <form onSubmit={handleSubmit} id="create-employee">
@@ -146,7 +142,13 @@ function FormCreateEmployee() {
           </button>
         </div>
       </form>
-      {showModal && <Modal handleClose={handleClose} />}
+      {showModal && (
+        <Modal
+          handleClose={() => {
+            setShowModal(false);
+          }}
+        />
+      )}
     </>
   );
 }
