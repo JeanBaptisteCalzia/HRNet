@@ -84,13 +84,11 @@ function FormCreateEmployee() {
             value={formData.state || ""}
             onChange={handleChange}
           >
-            {states.map((data, index) => {
-              return (
-                <option key={index} value={data.name}>
-                  {data.name}
-                </option>
-              );
-            })}
+            {states.map((data, index) => (
+              <option key={index} value={data.name}>
+                {data.name}
+              </option>
+            ))}
           </select>
 
           <label htmlFor="zipCode">Zip Code</label>
@@ -110,13 +108,12 @@ function FormCreateEmployee() {
           value={formData.department || ""}
           onChange={handleChange}
         >
-          {department.map((data, index) => {
-            return (
-              <option key={index} value={data.name}>
-                {data.name}
-              </option>
-            );
-          })}
+          {department.map((data, index) => (
+            <option key={index} value={data.name}>
+              {data.name}
+            </option>
+          ))}
+          )
         </select>
 
         <div className="bottom-section">
