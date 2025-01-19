@@ -4,15 +4,14 @@ import TableHead from "../../components/TableHead";
 import "../../components/Table/table.scss";
 
 function Table({ theadData, tbodyData }) {
+  let [data, setData] = useState(tbodyData);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectEntries, setSelectEntries] = useState(10);
-  const tableEntries = [10, 25, 50, 100];
-
   const [rowsPerPage, setRowPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const tableEntries = [10, 25, 50, 100];
 
   // Filter data based on search term
-  const filteredData = useMemo(() => {
+  data = useMemo(() => {
     return tbodyData.filter(
       (employees) =>
         employees.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -30,7 +29,15 @@ function Table({ theadData, tbodyData }) {
   // Pagination
   const startPoint = (currentPage - 1) * rowsPerPage;
   const endPoint = currentPage * rowsPerPage;
-  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+
+  // Sorting
+  const [toggle, setToggle] = useState(false);
+  const handleHeaderClick = (header) => {
+    const newToggle = !toggle;
+    setToggle(newToggle);
+    setData(data.sort((a, b) => (a[header] > b[header] ? 1 : -1)));
+  };
 
   return (
     <>
@@ -67,13 +74,13 @@ function Table({ theadData, tbodyData }) {
         <thead>
           <tr>
             {theadData.map((h) => {
-              return <TableHead key={h} item={h} />;
+              return <TableHead key={h} item={h} onClick={handleHeaderClick} />;
             })}
           </tr>
         </thead>
         <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.slice(startPoint, endPoint).map((item, index) => {
+          {data.length > 0 ? (
+            data.slice(startPoint, endPoint).map((item, index) => {
               return <TableRow key={index} data={item} />;
             })
           ) : (
