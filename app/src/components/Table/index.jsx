@@ -5,6 +5,8 @@ import "../../components/Table/table.scss";
 
 function Table({ theadData, tbodyData }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectEntries, setSelectEntries] = useState(10);
+  const tableEntries = [10, 25, 50, 100];
 
   // Filter data based on search term
   const filteredData = useMemo(() => {
@@ -22,19 +24,23 @@ function Table({ theadData, tbodyData }) {
     );
   }, [tbodyData, searchTerm]);
 
-  console.log(filteredData);
-
   return (
     <>
       <div className="table-top">
         <div className="table-length">
           <label htmlFor="table-length">
             Show
-            <select id="table-length" name="table-length">
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
+            <select
+              id="table-length"
+              name="table-length"
+              value={selectEntries || ""}
+              onChange={({ target: { value } }) => setSelectEntries(value)}
+            >
+              {tableEntries.map((data, index) => (
+                <option key={index} value={data}>
+                  {data}
+                </option>
+              ))}
             </select>
             entries
           </label>
@@ -74,7 +80,9 @@ function Table({ theadData, tbodyData }) {
       </table>
       <div className="table-bottom">
         <div className="table-info">
-          <p>Showing 1 to 10 of {tbodyData.length} entries</p>
+          <p>
+            Showing 1 to {selectEntries} of {tbodyData.length} entries
+          </p>
         </div>
         <div className="table-paginate">
           <a className="table-paginate__button previous">Previous</a>
