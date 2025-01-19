@@ -7,6 +7,11 @@ tr {
   vertical-align: inherit;
   unicode-bidi: isolate;
   border-color: inherit;
+  border: 1px solid #eee;
+
+  td {
+    height: 2.5rem;
+  }
 
   thead th,
   thead td,
