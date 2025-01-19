@@ -12,6 +12,13 @@ function FormCreateEmployee() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    startDate: "",
+    department: "",
+    dateBirth: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
   });
 
   const handleChange = (event) => {

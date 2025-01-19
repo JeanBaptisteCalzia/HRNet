@@ -11,9 +11,18 @@ function Table({ theadData, tbodyData }) {
     return tbodyData.filter(
       (employees) =>
         employees.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        employees.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+        employees.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.startDate.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.dateBirth.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.street.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.zipCode.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [tbodyData, searchTerm]);
+
+  console.log(filteredData);
 
   return (
     <>
