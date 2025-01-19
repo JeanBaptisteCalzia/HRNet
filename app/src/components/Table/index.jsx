@@ -8,6 +8,9 @@ function Table({ theadData, tbodyData }) {
   const [selectEntries, setSelectEntries] = useState(10);
   const tableEntries = [10, 25, 50, 100];
 
+  const [rowsPerPage, setRowPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+
   // Filter data based on search term
   const filteredData = useMemo(() => {
     return tbodyData.filter(
@@ -24,6 +27,11 @@ function Table({ theadData, tbodyData }) {
     );
   }, [tbodyData, searchTerm]);
 
+  // Pagination
+  const startPoint = (currentPage - 1) * rowsPerPage;
+  const endPoint = currentPage * rowsPerPage;
+  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
   return (
     <>
       <div className="table-top">
@@ -31,10 +39,9 @@ function Table({ theadData, tbodyData }) {
           <label htmlFor="table-length">
             Show
             <select
-              id="table-length"
-              name="table-length"
-              value={selectEntries || ""}
-              onChange={({ target: { value } }) => setSelectEntries(value)}
+              name="table-lenght"
+              id="table-lenght"
+              onChange={(e) => setRowPerPage(e.target.value)}
             >
               {tableEntries.map((data, index) => (
                 <option key={index} value={data}>
@@ -66,7 +73,7 @@ function Table({ theadData, tbodyData }) {
         </thead>
         <tbody>
           {filteredData.length > 0 ? (
-            filteredData.map((item, index) => {
+            filteredData.slice(startPoint, endPoint).map((item, index) => {
               return <TableRow key={index} data={item} />;
             })
           ) : (
@@ -81,15 +88,33 @@ function Table({ theadData, tbodyData }) {
       <div className="table-bottom">
         <div className="table-info">
           <p>
-            Showing 1 to {selectEntries} of {tbodyData.length} entries
+            Showing 1 to {rowsPerPage} of {tbodyData.length} entries
           </p>
         </div>
         <div className="table-paginate">
-          <a className="table-paginate__button previous">Previous</a>
+          <a
+            className="table-paginate__button previous"
+            onClick={() => {
+              if (currentPage > 1) {
+                setCurrentPage(currentPage - 1);
+              }
+            }}
+          >
+            Previous
+          </a>
           <span>
             <a className="table-paginate__button current">1</a>
           </span>
-          <a className="table-paginate__button next">Next</a>
+          <a
+            className="table-paginate__button next"
+            onClick={() => {
+              if (currentPage < totalPages) {
+                setCurrentPage(currentPage + 1);
+              }
+            }}
+          >
+            Next
+          </a>
         </div>
       </div>
     </>
