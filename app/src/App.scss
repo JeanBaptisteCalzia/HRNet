@@ -53,6 +53,12 @@ body {
     }
   }
 
+  &--disabled {
+    background-color: #eee;
+    color: #ccc;
+    border: none;
+  }
+
   &:hover {
     cursor: pointer;
   }

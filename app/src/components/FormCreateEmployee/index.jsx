@@ -9,7 +9,10 @@ import { tbodyData } from "../../data/tbodyData/";
 
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+  });
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -117,12 +120,16 @@ function FormCreateEmployee() {
         </select>
 
         <div className="bottom-section">
-          <button
-            className="btn btn--secondary"
-            onClick={() => setShowModal(true)}
-          >
-            Save
-          </button>
+          {formData.firstName !== "" || formData.lastName !== "" ? (
+            <button
+              className="btn btn--secondary"
+              onClick={() => setShowModal(true)}
+            >
+              Save
+            </button>
+          ) : (
+            <button className="btn btn--disabled">Save</button>
+          )}
         </div>
       </form>
       {showModal && (
