@@ -1,8 +1,20 @@
+import { useState, useMemo } from "react";
 import TableRow from "../../components/TableRow";
 import TableHead from "../../components/TableHead";
 import "../../components/Table/table.scss";
 
 function Table({ theadData, tbodyData }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter data based on search term
+  const filteredData = useMemo(() => {
+    return tbodyData.filter(
+      (employees) =>
+        employees.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employees.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [tbodyData, searchTerm]);
+
   return (
     <>
       <div className="table-top">
@@ -21,7 +33,11 @@ function Table({ theadData, tbodyData }) {
         <div className="table-filter">
           <label>
             Search:
-            <input type="search" />
+            <input
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </label>
         </div>
       </div>
@@ -34,9 +50,17 @@ function Table({ theadData, tbodyData }) {
           </tr>
         </thead>
         <tbody>
-          {tbodyData.map((item, index) => {
-            return <TableRow key={index} data={item} />;
-          })}
+          {filteredData.length > 0 ? (
+            filteredData.map((item, index) => {
+              return <TableRow key={index} data={item} />;
+            })
+          ) : (
+            <tr>
+              <td className="no-result" colSpan="9">
+                No results found
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
       <div className="table-bottom">
