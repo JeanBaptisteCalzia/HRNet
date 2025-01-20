@@ -110,7 +110,7 @@ function Table({ theadData, tbodyData }) {
             Previous
           </a>
           <span>
-            <a className="table-paginate__button current">1</a>
+            <a className="table-paginate__button current">{currentPage}</a>
           </span>
           <a
             className="table-paginate__button next"
