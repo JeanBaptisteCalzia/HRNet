@@ -34,10 +34,10 @@ function Table({ theadData, tbodyData }) {
 
   // Sorting
   const [toggle, setToggle] = useState(false);
-  const handleHeaderClick = (header) => {
+  const handleHeaderClick = () => {
     const newToggle = !toggle;
     setToggle(newToggle);
-    setData(data.sort((a, b) => (a[header] > b[header] ? 1 : -1)));
+    setData(data.sort().reverse());
   };
 
   return (
@@ -75,15 +75,25 @@ function Table({ theadData, tbodyData }) {
         <thead>
           <tr>
             {theadData.map((h) => {
-              return <TableHead key={h} item={h} onClick={handleHeaderClick} />;
+              return (
+                <TableHead
+                  key={h}
+                  item={h}
+                  onClick={handleHeaderClick}
+                  toggle={toggle}
+                />
+              );
             })}
           </tr>
         </thead>
         <tbody>
           {data.length > 0 ? (
-            data.slice(startPoint, endPoint).map((item, index) => {
-              return <TableRow key={index} data={item} />;
-            })
+            data
+              .sort()
+              .slice(startPoint, endPoint)
+              .map((item, index) => {
+                return <TableRow key={index} data={item} />;
+              })
           ) : (
             <tr>
               <td className="no-result" colSpan="9">

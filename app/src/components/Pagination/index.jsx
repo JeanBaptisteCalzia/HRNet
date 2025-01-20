@@ -10,7 +10,6 @@ function Pagination({ nbPages, currentPage, setCurrentPage }) {
     if (currentPage !== 1) setCurrentPage(currentPage - 1);
   };
 
-  console.log(pageNumbers);
   return (
     <nav>
       <ul className="pagination">

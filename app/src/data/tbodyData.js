@@ -1,5 +1,27 @@
 export const tbodyData = [
   {
+    firstName: "Zoe",
+    lastName: "",
+    startDate: "",
+    department: "",
+    dateBirth: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+  },
+  {
+    firstName: "John",
+    lastName: "",
+    startDate: "",
+    department: "",
+    dateBirth: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+  },
+  {
     firstName: "Paul",
     lastName: "",
     startDate: "",
