@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import TableRow from "../../components/TableRow";
 import TableHead from "../../components/TableHead";
+import Pagination from "../../components/Pagination";
 import "../../components/Table/table.scss";
 
 function Table({ theadData, tbodyData }) {
@@ -29,7 +30,7 @@ function Table({ theadData, tbodyData }) {
   // Pagination
   const startPoint = (currentPage - 1) * rowsPerPage;
   const endPoint = currentPage * rowsPerPage;
-  const totalPages = Math.ceil(data.length / rowsPerPage);
+  const nbPages = Math.ceil(data.length / rowsPerPage);
 
   // Sorting
   const [toggle, setToggle] = useState(false);
@@ -99,29 +100,11 @@ function Table({ theadData, tbodyData }) {
           </p>
         </div>
         <div className="table-paginate">
-          <a
-            className="table-paginate__button previous"
-            onClick={() => {
-              if (currentPage > 1) {
-                setCurrentPage(currentPage - 1);
-              }
-            }}
-          >
-            Previous
-          </a>
-          <span>
-            <a className="table-paginate__button current">{currentPage}</a>
-          </span>
-          <a
-            className="table-paginate__button next"
-            onClick={() => {
-              if (currentPage < totalPages) {
-                setCurrentPage(currentPage + 1);
-              }
-            }}
-          >
-            Next
-          </a>
+          <Pagination
+            nbPages={nbPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </div>
     </>

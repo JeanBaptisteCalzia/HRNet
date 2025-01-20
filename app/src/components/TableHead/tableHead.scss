@@ -3,6 +3,17 @@ thead {
   color: #0a0a0a;
   border: 1px solid rgb(241.3, 241.3, 241.3);
 
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   tr > th {
     text-align: left;
     padding: 0.5rem 0.625rem 0.625rem;
