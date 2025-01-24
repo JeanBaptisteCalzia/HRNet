@@ -225,7 +225,7 @@ function FormCreateEmployee() {
           <input
             className="input"
             {...register("zipCode")}
-            type=""
+            type="number"
             placeholder="Type your Zip Code"
             autoComplete="on"
           />
@@ -265,7 +265,7 @@ function FormCreateEmployee() {
         />
         <div className="bottom-section">
           <button
-            className="btn btn--secondary"
+            className="button button--secondary"
             type="submit"
             form="create-employee"
             value="Submit"

@@ -2,7 +2,7 @@ form {
   display: flex;
   flex-direction: column;
 
-  .btn {
+  .button {
     max-width: 10rem;
     width: 10rem;
   }
@@ -20,7 +20,7 @@ form {
 
   .bottom-section {
     border-top: 1px solid #ccc;
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 0 0;
     padding: 1.5rem 0;
     display: flex;
     justify-content: flex-end;

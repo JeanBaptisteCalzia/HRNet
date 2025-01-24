@@ -15,9 +15,9 @@ function Modal({ isShow, isClose }) {
   }, [isShow]);
 
   return isShow ? (
-    <dialog ref={dialogRef} className="modal">
+    <dialog ref={dialogRef} className="dialog">
       <h1>Employee Created!</h1>
-      <button className="modal__close-btn" onClick={isClose}>
+      <button className="dialog__close-btn" onClick={isClose}>
         <FontAwesomeIcon icon={faXmark} />
       </button>
     </dialog>

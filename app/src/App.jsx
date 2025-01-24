@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/";
 import Employee from "./pages/Employee/";
 import Error from "./components/Error/";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 function App() {
