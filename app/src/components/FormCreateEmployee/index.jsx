@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "../../components/Modal/";
+import Select from "../../components/Select/";
 import DateInput from "../../components/DateInput/";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
@@ -87,19 +88,7 @@ function FormCreateEmployee() {
           />
 
           <label htmlFor="state">State</label>
-
-          <select
-            id="state"
-            name="state"
-            value={formData.state || ""}
-            onChange={handleChange}
-          >
-            {states.map((data, index) => (
-              <option key={index} value={data.name}>
-                {data.name}
-              </option>
-            ))}
-          </select>
+          <Select id="state" onChange={handleChange} options={states} />
 
           <label htmlFor="zipCode">Zip Code</label>
           <input
@@ -112,19 +101,7 @@ function FormCreateEmployee() {
         </fieldset>
 
         <label htmlFor="department">Department</label>
-        <select
-          name="department"
-          id="department"
-          value={formData.department || ""}
-          onChange={handleChange}
-        >
-          {department.map((data, index) => (
-            <option key={index} value={data.name}>
-              {data.name}
-            </option>
-          ))}
-          )
-        </select>
+        <Select id="department" onChange={handleChange} options={department} />
 
         <div className="bottom-section">
           {formData.firstName !== "" || formData.lastName !== "" ? (
