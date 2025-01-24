@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function Error() {
   return (
     <>
-      <Header link="/Employee" hasBtn={false} />
+      <Header />
       <main className="wrapper">
         <h1>Oops! sorry page does not found</h1>
         <NavLink className="btn btn--secondary" to="/">
