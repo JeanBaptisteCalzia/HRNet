@@ -116,13 +116,13 @@ function FormCreateEmployee() {
           )}
         </div>
       </form>
-      {showModal && (
-        <Modal
-          handleClose={() => {
-            setShowModal(false);
-          }}
-        />
-      )}
+
+      <Modal
+        isShow={showModal}
+        isClose={() => {
+          setShowModal((prev) => !prev);
+        }}
+      />
     </>
   );
 }

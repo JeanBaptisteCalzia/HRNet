@@ -1,15 +1,11 @@
 .modal {
-  position: absolute;
-  background-color: #333;
-  background-color: rgba(0, 0, 0, 0.6);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  align-content: center;
+  border: none;
+  border-radius: 4px 4px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0.75;
+  }
 
   &__close-btn {
     position: absolute;
@@ -27,17 +23,5 @@
     svg {
       font-size: 1.5rem;
     }
-  }
-
-  &__body {
-    position: relative;
-    display: flex;
-    max-width: 1440px;
-    margin: 0 auto;
-    z-index: 1000;
-    color: black;
-    background-color: #fff;
-    border-radius: 8px 8px;
-    padding: 1.5rem;
   }
 }
