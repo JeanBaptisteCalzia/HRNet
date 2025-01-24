@@ -204,7 +204,20 @@ function FormCreateEmployee() {
             name="state"
             control={control}
             render={({ field }) => (
-              <Select {...field} options={states} className="select" />
+              <Select
+                {...field}
+                options={states}
+                className="react-select-container"
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: "#98ac3b",
+                    primary: "#98ac3b",
+                  },
+                })}
+              />
             )}
           />
 
@@ -225,7 +238,21 @@ function FormCreateEmployee() {
           control={control}
           rules={{ required: "Department is required" }}
           render={({ field }) => (
-            <Select {...field} options={department} className="select" />
+            <Select
+              {...field}
+              options={department}
+              className="react-select-container"
+              classNamePrefix="select-element"
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: "#98ac3b",
+                  primary: "#98ac3b",
+                },
+              })}
+            />
           )}
         />
 

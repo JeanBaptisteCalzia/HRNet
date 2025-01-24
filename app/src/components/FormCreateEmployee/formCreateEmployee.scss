@@ -7,7 +7,7 @@ form {
     width: 10rem;
   }
 
-  .select {
+  .react-select-container {
     max-width: 15rem;
   }
 
@@ -66,12 +66,26 @@ form {
     min-height: 38px;
   }
 
+  .select-element__option.select-element__option--is-selected {
+    background-color: #98ac3b;
+    color: white;
+  }
+
+  .select-element__option:hover {
+    background-color: #98ac3b;
+  }
+
   .input {
     max-width: 15rem;
     min-height: 38px;
     padding: 0.25rem 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px 4px;
+  }
+
+  input:focus {
+    outline: none !important;
+    border: 2px solid #98ac3b;
   }
 
   fieldset {
