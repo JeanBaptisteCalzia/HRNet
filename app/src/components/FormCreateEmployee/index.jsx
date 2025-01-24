@@ -2,15 +2,38 @@ import { useState } from "react";
 import Modal from "../../components/Modal/";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
+import DatePicker from "react-datepicker";
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getYear";
 import { ErrorMessage } from "@hookform/error-message";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
 import { tbodyData } from "../../data/tbodyData/";
 import "../../components/FormCreateEmployee/formCreateEmployee.scss";
+import "react-datepicker/dist/react-datepicker.css";
 
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const range = (start, end) => {
+    return new Array(end - start).fill().map((d, i) => i + start);
+  };
+  const years = range(1990, getYear(new Date()) + 1, 1);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const {
     register,
@@ -72,7 +95,89 @@ function FormCreateEmployee() {
           )}
         />
         <label>Date of Birth</label>
+        <Controller
+          control={control}
+          name="dateBirth"
+          render={({ field }) => (
+            <DatePicker
+              renderCustomHeader={({
+                date,
+                changeYear,
+                changeMonth,
+                decreaseMonth,
+                increaseMonth,
+                prevMonthButtonDisabled,
+                nextMonthButtonDisabled,
+              }) => (
+                <div
+                  style={{
+                    margin: 10,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <button
+                    onClick={decreaseMonth}
+                    disabled={prevMonthButtonDisabled}
+                  >
+                    {"<"}
+                  </button>
+                  <select
+                    value={getYear(date)}
+                    onChange={({ target: { value } }) => changeYear(value)}
+                  >
+                    {years.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={months[getMonth(date)]}
+                    onChange={({ target: { value } }) =>
+                      changeMonth(months.indexOf(value))
+                    }
+                  >
+                    {months.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+
+                  <button
+                    onClick={increaseMonth}
+                    disabled={nextMonthButtonDisabled}
+                  >
+                    {">"}
+                  </button>
+                </div>
+              )}
+              showIcon
+              toggleCalendarOnIconClick
+              onChange={(date) => field.onChange(date)}
+              selected={field.value}
+              placeholderText="Select date"
+            />
+          )}
+        />
+
         <label>Start Date</label>
+        <Controller
+          control={control}
+          name="startDate"
+          render={({ field }) => (
+            <DatePicker
+              showIcon
+              toggleCalendarOnIconClick
+              onChange={(date) => field.onChange(date)}
+              selected={field.value}
+              placeholderText="Select date"
+            />
+          )}
+        />
+
         <fieldset className="address">
           <legend>Address</legend>
 
