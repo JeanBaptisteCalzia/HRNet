@@ -71,28 +71,8 @@ function FormCreateEmployee() {
             <span className="error-message">{message}</span>
           )}
         />
-        {/* <label>
-          Date of Births
-          <input
-            {...register("dateBirth", {
-              required: "Date of Birth is required",
-            })}
-            type="text"
-            placeholder="Type your date of birth*"
-            required
-            autoComplete="on"
-            aria-invalid={errors.dateBirth ? "true" : "false"}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="dateBirth"
-            render={({ message }) => (
-              <span className="form__error-message">{message}</span>
-            )}
-          />
-        </label> */}
-        {/* <label htmlFor="startDate">Start Date</label> */}
-        {/* <DateInput value={formData.startDate || ""} onChange={handleChange} /> */}
+        <label>Date of Birth</label>
+        <label>Start Date</label>
         <fieldset className="address">
           <legend>Address</legend>
 
