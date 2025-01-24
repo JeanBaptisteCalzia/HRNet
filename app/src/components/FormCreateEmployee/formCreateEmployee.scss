@@ -7,8 +7,20 @@ form {
     width: 10rem;
   }
 
+  .select {
+    max-width: 15rem;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-size: 0.875rem;
+  }
+
   .bottom-section {
     border-top: 1px solid #ccc;
+    margin: 1.5rem 0;
     padding: 1.5rem 0;
     display: flex;
     justify-content: flex-end;
@@ -18,16 +30,19 @@ form {
     color: #333;
     font-weight: 500;
     margin-bottom: 0.25rem;
+    margin-top: 1.5rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
-  input,
-  select {
+  .input {
     max-width: 15rem;
-    min-height: 2rem;
-    padding: 0.25rem;
+    min-height: 38px;
+    padding: 0.25rem 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px 4px;
-    margin-bottom: 1.5rem;
   }
 
   fieldset {
@@ -35,7 +50,7 @@ form {
     flex-direction: column;
     padding: 1rem;
     border: 1px solid #eee;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0 0 0;
 
     legend {
       color: #333;

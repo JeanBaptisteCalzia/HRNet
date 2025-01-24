@@ -1,9 +1,9 @@
 import "../../components/Select/select.scss";
 
-function Select({ id, onChange, options }) {
+function Select({ register, options, label }) {
   return (
-    <select name={id} id={id} onChange={onChange}>
-      <option value="">-- Please choose an option --</option>
+    <select register={register}>
+      <option value="">-- Please choose a {label} --</option>
       {options.map((data, index) => (
         <option key={index} value={data.name}>
           {data.name}

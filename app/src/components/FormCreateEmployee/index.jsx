@@ -1,128 +1,177 @@
 import { useState } from "react";
 import Modal from "../../components/Modal/";
-import Select from "../../components/Select/";
-import DateInput from "../../components/DateInput/";
+import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
+import { ErrorMessage } from "@hookform/error-message";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
-import "../../components/FormCreateEmployee/formCreateEmployee.scss";
-
 import { tbodyData } from "../../data/tbodyData/";
+import "../../components/FormCreateEmployee/formCreateEmployee.scss";
 
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    startDate: "",
-    department: "",
-    dateBirth: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  });
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setFormData((values) => ({ ...values, [name]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm({ mode: "onSubmit" });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    tbodyData.push(formData);
+  const onSubmit = (data) => {
+    console.log(data);
+    setIsSuccess(true);
+    tbodyData.push(data);
+    setShowModal(true);
+    reset();
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} id="create-employee">
-        <label htmlFor="firstName">First Name</label>
+      <form
+        noValidate
+        className="form"
+        onSubmit={handleSubmit(onSubmit)}
+        id="create-employee"
+      >
+        <label>First Name </label>
         <input
+          className="input"
+          {...register("firstName", { required: "First Name is required" })}
           type="text"
+          placeholder="Type your first name*"
+          required
+          autoComplete="on"
+          aria-invalid={errors.firstName ? "true" : "false"}
+        />
+        <ErrorMessage
+          errors={errors}
           name="firstName"
-          id="firstName"
-          value={formData.firstName || ""}
-          onChange={handleChange}
+          render={({ message }) => (
+            <span className="error-message">{message}</span>
+          )}
         />
 
-        <label htmlFor="lastName">Last Name</label>
+        <label>Last Name </label>
         <input
+          className="input"
+          {...register("lastName", { required: "Last Name is required" })}
           type="text"
-          id="lastName"
+          placeholder="Type your last name*"
+          required
+          autoComplete="on"
+          aria-invalid={errors.lastName ? "true" : "false"}
+        />
+        <ErrorMessage
+          errors={errors}
           name="lastName"
-          value={formData.lastName || ""}
-          onChange={handleChange}
+          render={({ message }) => (
+            <span className="error-message">{message}</span>
+          )}
         />
-
-        <label htmlFor="dateBirth">Date of Birth</label>
-        <input
-          id="dateBirth"
-          type="text"
-          name="dateBirth"
-          value={formData.dateBirth || ""}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="startDate">Start Date</label>
-        <DateInput value={formData.startDate || ""} onChange={handleChange} />
-
+        {/* <label>
+          Date of Births
+          <input
+            {...register("dateBirth", {
+              required: "Date of Birth is required",
+            })}
+            type="text"
+            placeholder="Type your date of birth*"
+            required
+            autoComplete="on"
+            aria-invalid={errors.dateBirth ? "true" : "false"}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="dateBirth"
+            render={({ message }) => (
+              <span className="form__error-message">{message}</span>
+            )}
+          />
+        </label> */}
+        {/* <label htmlFor="startDate">Start Date</label> */}
+        {/* <DateInput value={formData.startDate || ""} onChange={handleChange} /> */}
         <fieldset className="address">
           <legend>Address</legend>
 
-          <label htmlFor="street">Street</label>
+          <label>Street </label>
           <input
-            id="street"
+            className="input"
+            {...register("street")}
             type="text"
-            name="street"
-            value={formData.street || ""}
-            onChange={handleChange}
+            placeholder="Type your Street"
+            autoComplete="on"
           />
 
-          <label htmlFor="city">City</label>
+          <label>City </label>
           <input
-            id="city"
+            className="input"
+            {...register("city")}
             type="text"
-            name="city"
-            value={formData.city || ""}
-            onChange={handleChange}
+            placeholder="Type your City"
+            autoComplete="on"
           />
 
-          <label htmlFor="state">State</label>
-          <Select id="state" onChange={handleChange} options={states} />
+          <label>State </label>
+          <Controller
+            name="state"
+            control={control}
+            render={({ field }) => (
+              <Select {...field} options={states} className="select" />
+            )}
+          />
 
-          <label htmlFor="zipCode">Zip Code</label>
+          <label>Zip Code </label>
           <input
-            id="zipCode"
-            type="number"
-            name="zipCode"
-            value={formData.zipCode || ""}
-            onChange={handleChange}
+            className="input"
+            {...register("zipCode")}
+            type=""
+            placeholder="Type your Zip Code"
+            autoComplete="on"
           />
         </fieldset>
 
-        <label htmlFor="department">Department</label>
-        <Select id="department" onChange={handleChange} options={department} />
-
-        <div className="bottom-section">
-          {formData.firstName !== "" || formData.lastName !== "" ? (
-            <button
-              className="btn btn--secondary"
-              onClick={() => setShowModal(true)}
-            >
-              Save
-            </button>
-          ) : (
-            <button className="btn btn--disabled">Save</button>
+        <label>Department</label>
+        <Controller
+          name="department"
+          className="select"
+          control={control}
+          rules={{ required: "Department is required" }}
+          render={({ field }) => (
+            <Select {...field} options={department} className="select" />
           )}
+        />
+
+        <ErrorMessage
+          errors={errors}
+          name="department"
+          render={({ message }) => (
+            <span className="error-message">{message}</span>
+          )}
+        />
+        <div className="bottom-section">
+          <button
+            className="btn btn--secondary"
+            type="submit"
+            form="create-employee"
+            value="Submit"
+          >
+            Save
+          </button>
         </div>
       </form>
 
-      <Modal
-        isShow={showModal}
-        isClose={() => {
-          setShowModal((prev) => !prev);
-        }}
-      />
+      {isSubmitSuccessful && isSuccess && (
+        <Modal
+          isShow={showModal}
+          isClose={() => {
+            setShowModal((prev) => !prev);
+          }}
+        />
+      )}
+      {errors?.root?.server && <h3>Form submit failed.</h3>}
     </>
   );
 }
