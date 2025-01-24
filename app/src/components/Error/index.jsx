@@ -1,10 +1,10 @@
-import Header from "../../components/Header/";
+import TopBar from "../../components/TopBar/";
 import { NavLink } from "react-router-dom";
 
 function Error() {
   return (
     <>
-      <Header />
+      <TopBar />
       <main className="wrapper">
         <h1>Oops! sorry page does not found</h1>
         <NavLink className="btn btn--secondary" to="/">

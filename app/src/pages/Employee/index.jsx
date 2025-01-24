@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from "../../components/Header/";
+import TopBar from "../../components/TopBar/";
 // import Table from "../../components/Table/"; // Custom component
 import { tbodyData } from "../../data/tbodyData/";
 
@@ -18,7 +18,7 @@ import { tbodyData } from "../../data/tbodyData/";
 function Employee() {
   return (
     <>
-      <Header link="/" label="Home" hasBtn={true} />
+      <TopBar link="/" label="Home" hasBtn={true} />
       <main className="wrapper">
         <h2>Current Employees</h2>
         <section className="content">
