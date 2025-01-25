@@ -13,63 +13,68 @@ body {
   background-color: #eee;
 }
 
-#root {
-  position: relative;
-}
-
-.wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1rem 1rem;
-}
-
-.content {
-  background-color: #fff;
-  border-radius: 1rem;
-  box-shadow: 10px 5px 5px #eee;
-  padding: 2rem 2rem;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-.button {
-  padding: 0.75rem 1rem;
-  border-radius: 0.25rem 0.25rem;
-  text-decoration: none;
+.btn-primary {
+  background-color: #98ac3b;
+  border: 1px solid #98ac3b;
   color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  transition: all 0.3ms ease-in-out;
 
-  &--primary {
+  &:hover {
+    background-color: #5c6827;
+    border: 1px solid #5c6827;
+    color: white;
+  }
+}
+
+.btn-secondary {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+
+  &:hover {
     background-color: white;
+    border: 1px solid black;
     color: black;
-    border: none;
+  }
+}
+
+// Table component
+.dt-container > .row:first-child {
+  margin-bottom: 3rem;
+}
+
+.dt-container > .dt-layout-table {
+  margin-bottom: 3rem;
+  padding: 1rem;
+}
+
+.dt-container {
+  table {
+    border: 1px solid #ccc;
   }
 
-  &--secondary {
-    background-color: #98ac3b;
-    color: white;
-    border: none;
-
-    &:hover {
-      background-color: #798b2a;
+  tbody {
+    tr {
+      border-top: 1px solid #eee;
     }
   }
 
-  &--disabled {
+  thead {
     background-color: #eee;
-    color: #ccc;
-    border: none;
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 }
 
-h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+.active > .page-link {
+  background-color: #98ac3b;
+  border-color: #98ac3b;
+}
+
+.form-control:focus,
+.form-select:focus {
   color: black;
+  background-color: white;
+  border: 2px solid #98ac3b;
+  outline: 0;
+  box-shadow: none;
 }

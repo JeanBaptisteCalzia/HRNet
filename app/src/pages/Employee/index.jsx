@@ -4,8 +4,8 @@ import TopBar from "../../components/TopBar/";
 import { tbodyData } from "../../data/tbodyData/";
 import DataTable from "datatables.net-react";
 import DataTablesCore from "datatables.net-bs5";
-DataTable.use(DataTablesCore);
 
+// Custom component
 // const theadData = [
 //   "First Name",
 //   "Last Name",
@@ -19,53 +19,43 @@ DataTable.use(DataTablesCore);
 // ];
 
 function Employee() {
-  const [tableData, setTableData] = useState([
-    [
-      "Tiger Nixon",
-      "System Architect",
-      "System Architect",
-      "System Architect",
-      "System Architect",
-      "System Architect",
-      "System Architect",
-      "System Architect",
-      "System Architect",
-    ],
-    [
-      "Garrett Winters",
-      "Accountant",
-      "Accountant",
-      "Accountant",
-      "Accountant",
-      "Accountant",
-      "Accountant",
-      "Accountant",
-      "Accountant",
-    ],
-  ]);
+  const [tableData, setTableData] = useState([tbodyData]);
+  DataTable.use(DataTablesCore);
+
   return (
     <>
       <TopBar link="/" label="Home" hasBtn={true} />
-      <main className="wrapper">
-        <h2>Current Employees</h2>
-        <section className="content">
-          <DataTable data={tableData} className="display">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Start Date</th>
-                <th>Department</th>
-                <th>Date of Birth</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip Code</th>
-              </tr>
-            </thead>
-          </DataTable>
-          {/* <Table theadData={theadData} tbodyData={tbodyData} /> */}
-        </section>
+      <main className="container-xxl">
+        <div className="row">
+          <div className="col my-3">
+            <h2 className="my-0">Current Employees</h2>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="card">
+              <div className="card-body">
+                <DataTable data={tableData} className="display">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Start Date</th>
+                      <th>Department</th>
+                      <th>Date of Birth</th>
+                      <th>Street</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Zip Code</th>
+                    </tr>
+                  </thead>
+                </DataTable>
+                {/* <Table theadData={theadData} tbodyData={tbodyData} /> */}
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );

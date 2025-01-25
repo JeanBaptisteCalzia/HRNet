@@ -44,7 +44,6 @@ function FormCreateEmployee() {
   } = useForm({ mode: "onSubmit" });
 
   const onSubmit = (data) => {
-    console.log(data);
     setIsSuccess(true);
     tbodyData.push(data);
     setShowModal(true);
@@ -53,227 +52,327 @@ function FormCreateEmployee() {
 
   return (
     <>
-      <form
-        noValidate
-        className="form"
-        onSubmit={handleSubmit(onSubmit)}
-        id="create-employee"
-      >
-        <label>First Name </label>
-        <input
-          className="input"
-          {...register("firstName", { required: "First Name is required" })}
-          type="text"
-          placeholder="Type your first name*"
-          required
-          autoComplete="on"
-          aria-invalid={errors.firstName ? "true" : "false"}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="firstName"
-          render={({ message }) => (
-            <span className="error-message">{message}</span>
-          )}
-        />
-
-        <label>Last Name </label>
-        <input
-          className="input"
-          {...register("lastName", { required: "Last Name is required" })}
-          type="text"
-          placeholder="Type your last name*"
-          required
-          autoComplete="on"
-          aria-invalid={errors.lastName ? "true" : "false"}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="lastName"
-          render={({ message }) => (
-            <span className="error-message">{message}</span>
-          )}
-        />
-        <label>Date of Birth</label>
-        <Controller
-          control={control}
-          name="dateBirth"
-          render={({ field }) => (
-            <DatePicker
-              renderCustomHeader={({
-                date,
-                changeYear,
-                changeMonth,
-                decreaseMonth,
-                increaseMonth,
-                prevMonthButtonDisabled,
-                nextMonthButtonDisabled,
-              }) => (
-                <div
-                  style={{
-                    margin: 10,
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <button
-                    onClick={decreaseMonth}
-                    disabled={prevMonthButtonDisabled}
-                  >
-                    {"<"}
-                  </button>
-                  <select
-                    value={getYear(date)}
-                    onChange={({ target: { value } }) => changeYear(value)}
-                  >
-                    {years.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-
-                  <select
-                    value={months[getMonth(date)]}
-                    onChange={({ target: { value } }) =>
-                      changeMonth(months.indexOf(value))
-                    }
-                  >
-                    {months.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-
-                  <button
-                    onClick={increaseMonth}
-                    disabled={nextMonthButtonDisabled}
-                  >
-                    {">"}
-                  </button>
-                </div>
-              )}
-              showIcon
-              toggleCalendarOnIconClick
-              onChange={(date) => field.onChange(date)}
-              selected={field.value}
-              placeholderText="Select date"
-            />
-          )}
-        />
-
-        <label>Start Date</label>
-        <Controller
-          control={control}
-          name="startDate"
-          render={({ field }) => (
-            <DatePicker
-              showIcon
-              toggleCalendarOnIconClick
-              onChange={(date) => field.onChange(date)}
-              selected={field.value}
-              placeholderText="Select date"
-            />
-          )}
-        />
-
-        <fieldset className="address">
-          <legend>Address</legend>
-
-          <label>Street </label>
-          <input
-            className="input"
-            {...register("street")}
-            type="text"
-            placeholder="Type your Street"
-            autoComplete="on"
-          />
-
-          <label>City </label>
-          <input
-            className="input"
-            {...register("city")}
-            type="text"
-            placeholder="Type your City"
-            autoComplete="on"
-          />
-
-          <label>State </label>
-          <Controller
-            name="state"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={states}
-                className="react-select-container"
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 0,
-                  colors: {
-                    ...theme.colors,
-                    primary25: "#98ac3b",
-                    primary: "#98ac3b",
-                  },
-                })}
-              />
-            )}
-          />
-
-          <label>Zip Code </label>
-          <input
-            className="input"
-            {...register("zipCode")}
-            type="number"
-            placeholder="Type your Zip Code"
-            autoComplete="on"
-          />
-        </fieldset>
-
-        <label>Department</label>
-        <Controller
-          name="department"
-          className="select"
-          control={control}
-          rules={{ required: "Department is required" }}
-          render={({ field }) => (
-            <Select
-              {...field}
-              options={department}
-              className="react-select-container"
-              classNamePrefix="select-element"
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                  ...theme.colors,
-                  primary25: "#98ac3b",
-                  primary: "#98ac3b",
-                },
-              })}
-            />
-          )}
-        />
-
-        <ErrorMessage
-          errors={errors}
-          name="department"
-          render={({ message }) => (
-            <span className="error-message">{message}</span>
-          )}
-        />
-        <div className="bottom-section">
-          <button
-            className="button button--secondary"
-            type="submit"
-            form="create-employee"
-            value="Submit"
+      <div className="card">
+        <div className="card-body">
+          <form
+            noValidate
+            className="form row"
+            onSubmit={handleSubmit(onSubmit)}
+            id="create-employee"
           >
-            Save
-          </button>
+            <div className="mb-3 col-sm-12">
+              <div className="row">
+                <div className="col-sm-2">
+                  <label htmlFor="firstName" className="form-label">
+                    First Name
+                  </label>
+                  <input
+                    id="firstName"
+                    className="form-control"
+                    {...register("firstName", {
+                      required: "First Name is required",
+                    })}
+                    type="text"
+                    placeholder="Type your first name*"
+                    required
+                    autoComplete="on"
+                    aria-invalid={errors.firstName ? "true" : "false"}
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="firstName"
+                    render={({ message }) => (
+                      <span className="error-message">{message}</span>
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-3 col-sm-12">
+              <div className="row">
+                <div className="col-sm-2">
+                  <label htmlFor="lastName" className="form-label">
+                    Last Name
+                  </label>
+                  <input
+                    id="lastName"
+                    className="form-control"
+                    {...register("lastName", {
+                      required: "Last Name is required",
+                    })}
+                    type="text"
+                    placeholder="Type your last name*"
+                    required
+                    autoComplete="on"
+                    aria-invalid={errors.lastName ? "true" : "false"}
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="lastName"
+                    render={({ message }) => (
+                      <span className="error-message">{message}</span>
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-3 col-sm-12">
+              <div className="row">
+                <div className="col-sm-2">
+                  <label htmlFor="dateBirth" className="form-label">
+                    Date of Birth
+                  </label>
+                  <div className="col-sm-12">
+                    <Controller
+                      id="dateBirth"
+                      control={control}
+                      name="dateBirth"
+                      render={({ field }) => (
+                        <DatePicker
+                          renderCustomHeader={({
+                            date,
+                            changeYear,
+                            changeMonth,
+                            decreaseMonth,
+                            increaseMonth,
+                            prevMonthButtonDisabled,
+                            nextMonthButtonDisabled,
+                          }) => (
+                            <div
+                              style={{
+                                margin: 10,
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <button
+                                onClick={decreaseMonth}
+                                disabled={prevMonthButtonDisabled}
+                              >
+                                {"<"}
+                              </button>
+                              <select
+                                value={getYear(date)}
+                                onChange={({ target: { value } }) =>
+                                  changeYear(value)
+                                }
+                              >
+                                {years.map((option) => (
+                                  <option key={option} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </select>
+
+                              <select
+                                value={months[getMonth(date)]}
+                                onChange={({ target: { value } }) =>
+                                  changeMonth(months.indexOf(value))
+                                }
+                              >
+                                {months.map((option) => (
+                                  <option key={option} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </select>
+
+                              <button
+                                onClick={increaseMonth}
+                                disabled={nextMonthButtonDisabled}
+                              >
+                                {">"}
+                              </button>
+                            </div>
+                          )}
+                          showIcon
+                          toggleCalendarOnIconClick
+                          onChange={(date) => field.onChange(date)}
+                          selected={field.value}
+                          placeholderText="Select date"
+                          className="form-control"
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mb-3 col-sm-12">
+              <div className="row">
+                <div className="col-sm-2">
+                  <label htmlFor="startDate" className="form-label">
+                    Start Date
+                  </label>
+                  <div className="col-sm-12">
+                    <Controller
+                      control={control}
+                      name="startDate"
+                      render={({ field }) => (
+                        <DatePicker
+                          showIcon
+                          toggleCalendarOnIconClick
+                          onChange={(date) => field.onChange(date)}
+                          selected={field.value}
+                          placeholderText="Select date"
+                          className="form-control"
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <fieldset className="mb-3">
+              <legend>Address</legend>
+
+              <div className="mb-3 col-sm-12">
+                <div className="row">
+                  <div className="col-sm-4">
+                    <label htmlFor="startDate" className="form-label">
+                      Street
+                    </label>
+                    <input
+                      id="startDate"
+                      className="form-control"
+                      {...register("street")}
+                      type="text"
+                      placeholder="Type your Street"
+                      autoComplete="on"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-3 col-sm-12">
+                <div className="row">
+                  <div className="col-sm-2">
+                    <label htmlFor="city" className="form-label">
+                      City
+                    </label>
+                    <input
+                      id="city"
+                      className="form-control"
+                      {...register("city")}
+                      type="text"
+                      placeholder="Type your City"
+                      autoComplete="on"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-3 col-sm-12">
+                <div className="row">
+                  <div className="col-sm-2">
+                    <label htmlFor="state" className="form-label">
+                      State
+                    </label>
+                    <Controller
+                      id="state"
+                      name="state"
+                      control={control}
+                      render={({ field }) => (
+                        <Select
+                          {...field}
+                          options={states}
+                          className="react-select-container"
+                          classNamePrefix="react-select-element"
+                          theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#98ac3b",
+                              primary: "#98ac3b",
+                            },
+                          })}
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-3 col-sm-12">
+                <div className="row">
+                  <div className="col-sm-2">
+                    <label htmlFor="zipCode" className="form-label">
+                      Zip Code
+                    </label>
+                    <input
+                      id="zipCode"
+                      className="form-control"
+                      {...register("zipCode")}
+                      type="text"
+                      placeholder="Type your Zip Code"
+                      autoComplete="on"
+                    />
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <div className="mb-3 col-sm-12">
+              <div className="row">
+                <div className="col-sm-2">
+                  <label htmlFor="department" className="form-label">
+                    Department
+                  </label>
+                  <Controller
+                    id="department"
+                    name="department"
+                    className="select"
+                    control={control}
+                    rules={{ required: "Department is required" }}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        options={department}
+                        className="react-select-container"
+                        classNamePrefix="react-select-element"
+                        theme={(theme) => ({
+                          ...theme,
+                          borderRadius: 0,
+                          colors: {
+                            ...theme.colors,
+                            primary25: "#98ac3b",
+                            primary: "#98ac3b",
+                          },
+                        })}
+                      />
+                    )}
+                  />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="department"
+                    render={({ message }) => (
+                      <span className="error-message">{message}</span>
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="d-flex flex-row-reverse mt-3">
+              <div className="d-grid gap-2 col-1">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  form="create-employee"
+                  value="Submit"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
 
       {isSubmitSuccessful && isSuccess && (
         <Modal

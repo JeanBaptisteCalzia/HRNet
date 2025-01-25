@@ -1,40 +1,20 @@
 form {
-  display: flex;
-  flex-direction: column;
+  padding: 1rem;
 
-  .button {
-    max-width: 10rem;
-    width: 10rem;
+  .react-select-element__option:active {
+    background-color: #98ac3b;
   }
 
-  .react-select-container {
-    max-width: 15rem;
+  .react-select-element__control {
+    border-radius: 4px 4px;
   }
 
-  .error-message {
-    color: red;
-    margin-top: 0.5rem;
-    font-style: italic;
-    font-size: 0.875rem;
+  .react-datepicker__view-calendar-icon input {
+    padding: 6px 10px 5px 2rem;
   }
 
-  .bottom-section {
-    border-top: 1px solid #ccc;
-    margin: 1.5rem 0 0 0;
-    padding: 1.5rem 0;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  label {
-    color: #333;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-    margin-top: 1.5rem;
-
-    &:first-child {
-      margin-top: 0;
-    }
+  .react-datepicker__input-container .react-datepicker__calendar-icon {
+    padding: 0.65rem;
   }
 
   .react-datepicker__day--keyboard-selected {
@@ -47,58 +27,22 @@ form {
     color: white;
   }
 
-  .react-datepicker-wrapper {
-    max-width: 15rem;
-  }
-
-  .react-datepicker__view-calendar-icon input {
-    padding: 6px 10px 5px 2rem;
-  }
-
-  .react-datepicker__input-container .react-datepicker__calendar-icon {
-    padding: 0.65rem;
-  }
-
-  .react-datepicker-wrapper input {
-    border: 1px solid #ccc;
-    border-radius: 4px 4px;
-    width: 100%;
-    min-height: 38px;
-  }
-
-  .select-element__option.select-element__option--is-selected {
-    background-color: #98ac3b;
-    color: white;
-  }
-
-  .select-element__option:hover {
-    background-color: #98ac3b;
-  }
-
-  .input {
-    max-width: 15rem;
-    min-height: 38px;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px 4px;
-  }
-
-  input:focus {
-    outline: none !important;
+  .form-control:focus {
+    color: black;
+    background-color: white;
     border: 2px solid #98ac3b;
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .error-message {
+    color: red;
+    font-style: italic;
+    font-size: 0.875rem;
   }
 
   fieldset {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border: 1px solid #eee;
-    margin: 1.5rem 0 0 0;
-
-    legend {
-      color: #333;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
+    border: 1px solid #ccc;
+    padding: 1.5rem;
   }
 }

@@ -5,11 +5,18 @@ function Home() {
   return (
     <>
       <TopBar link="/Employee" label="View Current Employees" hasBtn={true} />
-      <main className="wrapper">
-        <h2>Create Employee</h2>
-        <section className="content">
-          <FormCreateEmployee />
-        </section>
+      <main className="container-xxl">
+        <div className="row">
+          <div className="col my-3">
+            <h2 className="my-0">Create Employee</h2>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <FormCreateEmployee />
+          </div>
+        </div>
       </main>
     </>
   );

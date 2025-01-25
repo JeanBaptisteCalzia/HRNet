@@ -9,7 +9,7 @@ function Header({ link, label, hasBtn }) {
           <h1>HRnet</h1>
         </NavLink>
         {hasBtn ? (
-          <NavLink to={link} className="button button--primary">
+          <NavLink to={link} className="btn btn-secondary">
             {label}
           </NavLink>
         ) : null}

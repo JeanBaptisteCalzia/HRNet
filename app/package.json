@@ -18,6 +18,7 @@
     "datatables.net-bs5": "^2.2.1",
     "datatables.net-dt": "^2.2.1",
     "datatables.net-react": "^1.0.0",
+    "datatables.net-responsive-dt": "^3.0.3",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.8",
