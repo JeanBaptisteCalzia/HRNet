@@ -62,7 +62,7 @@ function FormCreateEmployee() {
           >
             <div className="mb-3 col-sm-12">
               <div className="row">
-                <div className="col-sm-2">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <label htmlFor="firstName" className="form-label">
                     First Name
                   </label>
@@ -91,7 +91,7 @@ function FormCreateEmployee() {
 
             <div className="mb-3 col-sm-12">
               <div className="row">
-                <div className="col-sm-2">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <label htmlFor="lastName" className="form-label">
                     Last Name
                   </label>
@@ -120,7 +120,7 @@ function FormCreateEmployee() {
 
             <div className="mb-3 col-sm-12">
               <div className="row">
-                <div className="col-sm-2">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <label htmlFor="dateBirth" className="form-label">
                     Date of Birth
                   </label>
@@ -202,7 +202,7 @@ function FormCreateEmployee() {
             </div>
             <div className="mb-3 col-sm-12">
               <div className="row">
-                <div className="col-sm-2">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <label htmlFor="startDate" className="form-label">
                     Start Date
                   </label>
@@ -231,7 +231,7 @@ function FormCreateEmployee() {
 
               <div className="mb-3 col-sm-12">
                 <div className="row">
-                  <div className="col-sm-4">
+                  <div className="col-sm-12 col-md-6 col-lg-4">
                     <label htmlFor="startDate" className="form-label">
                       Street
                     </label>
@@ -249,7 +249,7 @@ function FormCreateEmployee() {
 
               <div className="mb-3 col-sm-12">
                 <div className="row">
-                  <div className="col-sm-2">
+                  <div className="col-sm-12 col-md-6 col-lg-3">
                     <label htmlFor="city" className="form-label">
                       City
                     </label>
@@ -267,7 +267,7 @@ function FormCreateEmployee() {
 
               <div className="mb-3 col-sm-12">
                 <div className="row">
-                  <div className="col-sm-2">
+                  <div className="col-sm-12 col-md-6 col-lg-3">
                     <label htmlFor="state" className="form-label">
                       State
                     </label>
@@ -299,7 +299,7 @@ function FormCreateEmployee() {
 
               <div className="mb-3 col-sm-12">
                 <div className="row">
-                  <div className="col-sm-2">
+                  <div className="col-sm-12 col-md-6 col-lg-3">
                     <label htmlFor="zipCode" className="form-label">
                       Zip Code
                     </label>
@@ -318,7 +318,7 @@ function FormCreateEmployee() {
 
             <div className="mb-3 col-sm-12">
               <div className="row">
-                <div className="col-sm-2">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <label htmlFor="department" className="form-label">
                     Department
                   </label>
@@ -359,7 +359,7 @@ function FormCreateEmployee() {
             </div>
 
             <div className="d-flex flex-row-reverse mt-3">
-              <div className="d-grid gap-2 col-1">
+              <div className="d-grid gap-2 col-12 col-sm-12 col-md-1 col-lg-1">
                 <button
                   className="btn btn-primary"
                   type="submit"
