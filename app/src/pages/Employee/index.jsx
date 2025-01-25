@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import TopBar from "../../components/TopBar/";
 // import Table from "../../components/Table/"; // Custom component
 import { tbodyData } from "../../data/tbodyData/";
-import DataTable from "datatables.net-react";
-import DataTablesCore from "datatables.net-bs5";
+// import DataTable from "datatables.net-react";
+// import DataTablesCore from "datatables.net-bs5";
+import DataTable from "react-data-table-component";
 
 // Custom component
 // const theadData = [
@@ -18,9 +19,109 @@ import DataTablesCore from "datatables.net-bs5";
 //   "Zip Code",
 // ];
 
+const FilterComponent = ({ filterText, onFilter, onClear }) => (
+  <>
+    <div className="row">
+      <div className="col my-3">
+        <div className="input-group mb-3">
+          <input
+            id="search"
+            type="text"
+            className="form-control"
+            placeholder="Filter By Name"
+            aria-label="Search Input"
+            value={filterText}
+            onChange={onFilter}
+          />
+          <button
+            className="btn btn-primary btn-outline-secondary"
+            type="button"
+            onClick={onClear}
+          >
+            X
+          </button>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+const columns = [
+  {
+    name: "FirstName",
+    selector: (row) => row.firstName,
+    sortable: true,
+  },
+  {
+    name: "LastName",
+    selector: (row) => row.lastName,
+    sortable: true,
+  },
+  {
+    name: "Start Date",
+    selector: (row) => row.startDate,
+    sortable: true,
+  },
+  {
+    name: "Department",
+    selector: (row) => row.department,
+    sortable: true,
+  },
+  {
+    name: "Date of Birth",
+    selector: (row) => row.dateBirth,
+    sortable: true,
+  },
+  {
+    name: "Street",
+    selector: (row) => row.street,
+    sortable: true,
+  },
+  {
+    name: "City",
+    selector: (row) => row.city,
+    sortable: true,
+  },
+  {
+    name: "State",
+    selector: (row) => row.state,
+    sortable: true,
+  },
+  {
+    name: "Zip Code",
+    selector: (row) => row.zipCode,
+    sortable: true,
+  },
+];
+
 function Employee() {
-  const [tableData, setTableData] = useState([tbodyData]);
-  DataTable.use(DataTablesCore);
+  // const [tableData, setTableData] = useState([tbodyData]);
+  // DataTable.use(DataTablesCore);
+
+  const [filterText, setFilterText] = useState("");
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const filteredItems = tbodyData.filter(
+    (item) =>
+      item.firstName &&
+      item.firstName.toLowerCase().includes(filterText.toLowerCase())
+  );
+
+  const subHeaderComponentMemo = useMemo(() => {
+    const handleClear = () => {
+      if (filterText) {
+        setResetPaginationToggle(!resetPaginationToggle);
+        setFilterText("");
+      }
+    };
+
+    return (
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={handleClear}
+        filterText={filterText}
+      />
+    );
+  }, [filterText, resetPaginationToggle]);
 
   return (
     <>
@@ -36,7 +137,16 @@ function Employee() {
           <div className="col">
             <div className="card">
               <div className="card-body">
-                <DataTable data={tableData} className="display">
+                <DataTable
+                  columns={columns}
+                  data={filteredItems}
+                  pagination
+                  paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+                  subHeader
+                  subHeaderComponent={subHeaderComponentMemo}
+                />
+
+                {/* <DataTable data={tableData} className="display">
                   <thead>
                     <tr>
                       <th>First Name</th>
@@ -50,7 +160,7 @@ function Employee() {
                       <th>Zip Code</th>
                     </tr>
                   </thead>
-                </DataTable>
+                </DataTable> */}
                 {/* <Table theadData={theadData} tbodyData={tbodyData} /> */}
               </div>
             </div>

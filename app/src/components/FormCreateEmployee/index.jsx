@@ -19,7 +19,7 @@ function FormCreateEmployee() {
   const range = (start, end) => {
     return new Array(end - start).fill().map((d, i) => i + start);
   };
-  const years = range(1990, getYear(new Date()) + 1, 1);
+  const years = range(1940, getYear(new Date()) + 1, 1);
   const months = [
     "January",
     "February",
@@ -46,6 +46,7 @@ function FormCreateEmployee() {
   const onSubmit = (data) => {
     setIsSuccess(true);
     tbodyData.push(data);
+    console.log(tbodyData);
     setShowModal(true);
     reset();
   };
