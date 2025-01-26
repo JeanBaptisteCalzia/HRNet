@@ -1,11 +1,9 @@
-import { useState, useMemo } from "react";
-import TopBar from "../../components/TopBar/";
+import { useState, useMemo, useEffect } from "react";
 // import Table from "../../components/Table/"; // Custom component
-import { tbodyData } from "../../data/tbodyData/";
-// import DataTable from "datatables.net-react";
-// import DataTablesCore from "datatables.net-bs5";
+import TopBar from "../../components/TopBar/";
 import DataTable from "react-data-table-component";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getLocalStorageData as getLocalStorageDataAction } from "../../redux/dataSlice";
 // Custom component
 // const theadData = [
 //   "First Name",
@@ -64,7 +62,7 @@ const columns = [
   },
   {
     name: "Department",
-    selector: (row) => row.department.label,
+    selector: (row) => row.department?.label ?? row.department,
     sortable: true,
   },
   {
@@ -95,12 +93,11 @@ const columns = [
 ];
 
 function Employee() {
-  // const [tableData, setTableData] = useState([tbodyData]);
-  // DataTable.use(DataTablesCore);
-
+  const dispatch = useDispatch();
+  const { dataTable } = useSelector((state) => state.data);
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = tbodyData.filter(
+  const filteredItems = dataTable.filter(
     (item) =>
       item.firstName &&
       item.firstName.toLowerCase().includes(filterText.toLowerCase())
@@ -122,6 +119,12 @@ function Employee() {
       />
     );
   }, [filterText, resetPaginationToggle]);
+
+  useEffect(() => {
+    if (localStorage.getItem("employeesData")) {
+      dispatch(getLocalStorageDataAction());
+    }
+  }, []);
 
   return (
     <>
@@ -145,22 +148,6 @@ function Employee() {
                   subHeader
                   subHeaderComponent={subHeaderComponentMemo}
                 />
-
-                {/* <DataTable data={tableData} className="display">
-                  <thead>
-                    <tr>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Start Date</th>
-                      <th>Department</th>
-                      <th>Date of Birth</th>
-                      <th>Street</th>
-                      <th>City</th>
-                      <th>State</th>
-                      <th>Zip Code</th>
-                    </tr>
-                  </thead>
-                </DataTable> */}
                 {/* <Table theadData={theadData} tbodyData={tbodyData} /> */}
               </div>
             </div>

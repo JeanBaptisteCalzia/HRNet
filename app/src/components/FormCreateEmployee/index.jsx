@@ -9,13 +9,17 @@ import getMonth from "date-fns/getYear";
 import { ErrorMessage } from "@hookform/error-message";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
-import { tbodyData } from "../../data/tbodyData/";
+import { useSelector, useDispatch } from "react-redux";
+import { loadData as loadDataAction } from "../../redux/dataSlice";
 import "../../components/FormCreateEmployee/formCreateEmployee.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const dispatch = useDispatch();
+  const { dataTable } = useSelector((state) => state.data);
 
   const range = (start, end) => {
     return new Array(end - start).fill().map((d, i) => i + start);
@@ -46,7 +50,7 @@ function FormCreateEmployee() {
 
   const onSubmit = (data) => {
     setIsSuccess(true);
-    tbodyData.push(data);
+    dispatch(loadDataAction(data));
     setShowModal(true);
     reset();
   };
@@ -74,7 +78,7 @@ function FormCreateEmployee() {
                       required: "First Name is required",
                     })}
                     type="text"
-                    placeholder="Type your first name*"
+                    placeholder={dataTable[0].firstName}
                     required
                     autoComplete="on"
                     aria-invalid={errors.firstName ? "true" : "false"}
@@ -103,7 +107,7 @@ function FormCreateEmployee() {
                       required: "Last Name is required",
                     })}
                     type="text"
-                    placeholder="Type your last name*"
+                    placeholder={dataTable[0].lastName}
                     required
                     autoComplete="on"
                     aria-invalid={errors.lastName ? "true" : "false"}
@@ -198,7 +202,7 @@ function FormCreateEmployee() {
                             )
                           }
                           selected={field.value}
-                          placeholderText="Select date"
+                          placeholderText={dataTable[0].dateBirth}
                           className="form-control"
                           dateFormat="MM/D/YYYY"
                         />
@@ -223,7 +227,7 @@ function FormCreateEmployee() {
                           showIcon
                           toggleCalendarOnIconClick
                           selected={field.value}
-                          placeholderText="Select date"
+                          placeholderText={dataTable[0].startDate}
                           className="form-control"
                           dateFormat="MM/D/YYYY"
                           onChange={(date) =>
@@ -255,7 +259,7 @@ function FormCreateEmployee() {
                       className="form-control"
                       {...register("street")}
                       type="text"
-                      placeholder="Type your Street"
+                      placeholder={dataTable[0].street}
                       autoComplete="on"
                     />
                   </div>
@@ -273,7 +277,7 @@ function FormCreateEmployee() {
                       className="form-control"
                       {...register("city")}
                       type="text"
-                      placeholder="Type your City"
+                      placeholder={dataTable[0].city}
                       autoComplete="on"
                     />
                   </div>
@@ -294,6 +298,7 @@ function FormCreateEmployee() {
                         <Select
                           {...field}
                           options={states}
+                          placeholder={dataTable[0].state}
                           className="react-select-container"
                           classNamePrefix="react-select-element"
                           theme={(theme) => ({
@@ -323,7 +328,7 @@ function FormCreateEmployee() {
                       className="form-control"
                       {...register("zipCode")}
                       type="text"
-                      placeholder="Type your Zip Code"
+                      placeholder={dataTable[0].zipCode}
                       autoComplete="on"
                     />
                   </div>
@@ -347,6 +352,7 @@ function FormCreateEmployee() {
                       <Select
                         {...field}
                         options={department}
+                        placeholder={dataTable[0].department}
                         className="react-select-container"
                         classNamePrefix="react-select-element"
                         theme={(theme) => ({
