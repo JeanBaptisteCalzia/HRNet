@@ -47,7 +47,6 @@ function FormCreateEmployee() {
   const onSubmit = (data) => {
     setIsSuccess(true);
     tbodyData.push(data);
-    console.log(tbodyData);
     setShowModal(true);
     reset();
   };
