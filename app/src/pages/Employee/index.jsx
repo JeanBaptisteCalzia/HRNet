@@ -147,6 +147,7 @@ function Employee() {
                   paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
                   subHeader
                   subHeaderComponent={subHeaderComponentMemo}
+                  persistTableHead={true}
                 />
                 {/* <Table theadData={theadData} tbodyData={tbodyData} /> */}
               </div>
