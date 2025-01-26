@@ -309,7 +309,7 @@ function FormCreateEmployee() {
                         <Select
                           {...field}
                           options={states}
-                          placeholder="Select"
+                          placeholder="Select State"
                           className="react-select-container"
                           classNamePrefix="react-select-element"
                           theme={(theme) => ({
@@ -362,7 +362,7 @@ function FormCreateEmployee() {
                       <Select
                         {...field}
                         options={department}
-                        placeholder="Select"
+                        placeholder="Select Department*"
                         className="react-select-container"
                         classNamePrefix="react-select-element"
                         theme={(theme) => ({
