@@ -327,7 +327,7 @@ function FormCreateEmployee() {
                       id="zipCode"
                       className="form-control"
                       {...register("zipCode")}
-                      type="text"
+                      type="number"
                       placeholder={dataTable[0].zipCode}
                       autoComplete="on"
                     />
