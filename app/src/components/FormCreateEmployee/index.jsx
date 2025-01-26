@@ -47,11 +47,23 @@ function FormCreateEmployee() {
     formState: { errors, isSubmitSuccessful },
   } = useForm({ mode: "onSubmit" });
 
+  const defaultValues = {
+    firstName: "",
+    lastName: "",
+    dateBirth: "",
+    startDate: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    department: "",
+  };
+
   const onSubmit = (data) => {
     setIsSuccess(true);
     dispatch(loadDataAction(data));
     setShowModal(true);
-    reset();
+    reset(defaultValues);
   };
 
   return (
