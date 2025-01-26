@@ -84,7 +84,7 @@ const columns = [
   },
   {
     name: "State",
-    selector: (row) => row.state.label ?? row.state,
+    selector: (row) => row.state?.label ?? row.state,
     sortable: true,
   },
   {
