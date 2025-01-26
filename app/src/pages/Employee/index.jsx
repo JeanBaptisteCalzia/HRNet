@@ -48,12 +48,12 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
 
 const columns = [
   {
-    name: "FirstName",
+    name: "First Name",
     selector: (row) => row.firstName,
     sortable: true,
   },
   {
-    name: "LastName",
+    name: "Last Name",
     selector: (row) => row.lastName,
     sortable: true,
   },
@@ -64,7 +64,7 @@ const columns = [
   },
   {
     name: "Department",
-    selector: (row) => row.department,
+    selector: (row) => row.department.label,
     sortable: true,
   },
   {
@@ -84,7 +84,7 @@ const columns = [
   },
   {
     name: "State",
-    selector: (row) => row.state,
+    selector: (row) => row.state.label ?? row.state,
     sortable: true,
   },
   {

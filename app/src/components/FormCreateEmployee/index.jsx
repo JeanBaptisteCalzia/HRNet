@@ -3,6 +3,7 @@ import Modal from "../../components/Modal/";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
+import format from "date-fns/format";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getYear";
 import { ErrorMessage } from "@hookform/error-message";
@@ -190,10 +191,17 @@ function FormCreateEmployee() {
                           )}
                           showIcon
                           toggleCalendarOnIconClick
-                          onChange={(date) => field.onChange(date)}
+                          onChange={(date) =>
+                            field.onChange(
+                              format(date, "MM/dd/yyyy", {
+                                awareOfUnicodeTokens: true,
+                              })
+                            )
+                          }
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
+                          dateFormat="MM/D/YYYY"
                         />
                       )}
                     />
@@ -215,10 +223,17 @@ function FormCreateEmployee() {
                         <DatePicker
                           showIcon
                           toggleCalendarOnIconClick
-                          onChange={(date) => field.onChange(date)}
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
+                          dateFormat="MM/D/YYYY"
+                          onChange={(date) =>
+                            field.onChange(
+                              format(date, "MM/dd/yyyy", {
+                                awareOfUnicodeTokens: true,
+                              })
+                            )
+                          }
                         />
                       )}
                     />
