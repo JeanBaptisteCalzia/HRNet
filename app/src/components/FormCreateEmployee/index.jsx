@@ -143,8 +143,8 @@ function FormCreateEmployee() {
                   <div className="col-sm-12">
                     <Controller
                       id="dateBirth"
-                      control={control}
                       name="dateBirth"
+                      control={control}
                       render={({ field }) => (
                         <DatePicker
                           renderCustomHeader={({
@@ -216,6 +216,7 @@ function FormCreateEmployee() {
                           placeholderText="Select date"
                           className="form-control"
                           dateFormat="MM/D/YYYY"
+                          id="dateBirth"
                         />
                       )}
                     />
@@ -231,10 +232,11 @@ function FormCreateEmployee() {
                   </label>
                   <div className="col-sm-12">
                     <Controller
-                      control={control}
                       name="startDate"
+                      control={control}
                       render={({ field }) => (
                         <DatePicker
+                          id="startDate"
                           showIcon
                           toggleCalendarOnIconClick
                           selected={field.value}
@@ -262,11 +264,11 @@ function FormCreateEmployee() {
               <div className="mb-3 col-sm-12">
                 <div className="row">
                   <div className="col-sm-12 col-md-6 col-lg-4">
-                    <label htmlFor="startDate" className="form-label">
+                    <label htmlFor="street" className="form-label">
                       Street
                     </label>
                     <input
-                      id="startDate"
+                      id="street"
                       className="form-control"
                       {...register("street")}
                       type="text"
@@ -302,13 +304,13 @@ function FormCreateEmployee() {
                       State
                     </label>
                     <Controller
-                      id="state"
                       name="state"
                       control={control}
                       render={({ field }) => (
                         <Select
                           {...field}
                           options={states}
+                          inputId="state"
                           placeholder="Select State"
                           className="react-select-container"
                           classNamePrefix="react-select-element"
@@ -354,7 +356,6 @@ function FormCreateEmployee() {
                     Department
                   </label>
                   <Controller
-                    id="department"
                     name="department"
                     control={control}
                     rules={{ required: "Department is required" }}
@@ -362,6 +363,7 @@ function FormCreateEmployee() {
                       <Select
                         {...field}
                         options={department}
+                        inputId="department"
                         placeholder="Select Department*"
                         className="react-select-container"
                         classNamePrefix="react-select-element"
