@@ -56,35 +56,8 @@ body {
   }
 }
 
-// Table component
-.dt-container > .row:first-child {
-  margin-bottom: 3rem;
-}
-
-.dt-container > .dt-layout-table {
-  margin-bottom: 3rem;
-  padding: 1rem;
-}
-
-.dt-container {
-  table {
-    border: 1px solid #ccc;
-  }
-
-  tbody {
-    tr {
-      border-top: 1px solid #eee;
-    }
-  }
-
-  thead {
-    background-color: #eee;
-  }
-}
-
-.active > .page-link {
-  background-color: #98ac3b;
-  border-color: #98ac3b;
+.card {
+  margin-bottom: 2.5rem;
 }
 
 .form-control:focus,

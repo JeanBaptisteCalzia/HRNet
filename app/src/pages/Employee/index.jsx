@@ -124,7 +124,7 @@ function Employee() {
     if (localStorage.getItem("employeesData")) {
       dispatch(getLocalStorageDataAction());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
