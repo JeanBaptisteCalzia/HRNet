@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../../components/Modal/modal.scss";
@@ -34,5 +35,10 @@ function Modal({ isShow, isClose }) {
     </dialog>
   ) : null;
 }
+
+Modal.propTypes = {
+  isShow: PropTypes.bool.isRequired,
+  isClose: PropTypes.func.isRequired,
+};
 
 export default Modal;
