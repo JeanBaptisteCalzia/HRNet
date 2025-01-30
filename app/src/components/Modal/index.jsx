@@ -13,13 +13,15 @@ import "../../components/Modal/modal.scss";
  * @return { JSX.Element }
  */
 function Modal({ isShow, isClose }) {
-  const dialogRef = useRef();
+  const dialogRef = useRef(null);
+  // Utilizes React’s useRef to provide a reference to the <dialog> element,
+  // enabling direct manipulation of the modal’s DOM node
 
   useEffect(() => {
-    if (dialogRef.current?.isShow && !isShow) {
-      dialogRef.current?.close();
-    } else if (!dialogRef.current?.isShow && isShow) {
+    if (isShow) {
       dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
     }
   }, [isShow]);
 
