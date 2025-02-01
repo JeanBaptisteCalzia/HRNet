@@ -31,6 +31,8 @@ Transform an HR management application with legacy code into a React application
 - [react-router-dom](https://reactrouter.com/home) : ^7.1.2
 - [react-select](https://react-select.com/home) : ^5.9.0
 - [sass-embedded](https://www.npmjs.com/package/sass-embedded) : ^1.83.4
+- [styled-components](https://www.npmjs.com/package/styled-components) : ^6.1.14
+- [@emotion/is-prop-valid](https://www.npmjs.com/package/@emotion/is-prop-valid) : ^1.3.1
 
 ### 2.3 Launching the project
 
