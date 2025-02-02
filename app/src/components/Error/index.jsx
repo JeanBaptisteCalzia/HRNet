@@ -5,11 +5,15 @@ function Error() {
   return (
     <>
       <TopBar />
-      <main className="wrapper">
-        <h1>Oops! sorry page does not found</h1>
-        <NavLink className="btn btn--secondary" to="/">
-          Go back to home page
-        </NavLink>
+      <main className="container-xxl">
+        <div className="row">
+          <div className="col my-3">
+            <h1>Oops! sorry page does not found</h1>
+            <NavLink className="btn btn-primary" to="/">
+              Go back to home page
+            </NavLink>
+          </div>
+        </div>
       </main>
     </>
   );
