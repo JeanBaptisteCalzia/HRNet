@@ -413,6 +413,7 @@ function FormCreateEmployee() {
           isClose={() => {
             setShowModal((prev) => !prev);
           }}
+          content="Employee Created!"
         />
       )}
       {errors?.root?.server && <h3>Form submit failed.</h3>}

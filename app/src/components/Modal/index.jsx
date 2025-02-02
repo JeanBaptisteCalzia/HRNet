@@ -9,11 +9,12 @@ import "../../components/Modal/modal.scss";
  * @typedef {Object} ModalProps
  * @property { Boolean } isShow Display Modal on true, close modal on false (default)
  * @property { Function } isClose The click event handler (close modal)
+ * @property { String } content Display Modal content
  *
  * @param {ModalProps} props
  * @return { JSX.Element }
  */
-function Modal({ isShow, isClose }) {
+function Modal({ isShow, isClose, content }) {
   const dialogRef = useRef(null);
   // Utilizes React’s useRef to provide a reference to the <dialog> element,
   // enabling direct manipulation of the modal’s DOM node
@@ -28,7 +29,7 @@ function Modal({ isShow, isClose }) {
 
   return isShow ? (
     <dialog ref={dialogRef} className="dialog">
-      <h1 className="fs-3">Employee Created!</h1>
+      <h1 className="fs-3">{content}</h1>
       <button className="dialog__close-btn" onClick={isClose}>
         <FontAwesomeIcon icon={faXmark} />
       </button>
@@ -39,6 +40,7 @@ function Modal({ isShow, isClose }) {
 Modal.propTypes = {
   isShow: PropTypes.bool.isRequired,
   isClose: PropTypes.func.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default Modal;
