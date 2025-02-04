@@ -44,11 +44,27 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
   </>
 );
 
+const caseInsensitiveSort = (rowA, rowB) => {
+  const a = rowA.firstName.toLowerCase();
+  const b = rowB.firstName.toLowerCase();
+
+  if (a > b) {
+    return 1;
+  }
+
+  if (b > a) {
+    return -1;
+  }
+
+  return 0;
+};
+
 const columns = [
   {
     name: "First Name",
     selector: (row) => row.firstName,
     sortable: true,
+    sortFunction: caseInsensitiveSort,
   },
   {
     name: "Last Name",
@@ -97,11 +113,13 @@ function Employee() {
   const { dataTable } = useSelector((state) => state.data);
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = dataTable.filter(
-    (item) =>
-      item.firstName &&
-      item.firstName.toLowerCase().includes(filterText.toLowerCase())
-  );
+  const filteredItems = dataTable
+    .filter(
+      (item) =>
+        item.firstName &&
+        item.firstName.toLowerCase().includes(filterText.toLowerCase())
+    )
+    .reverse();
 
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
