@@ -3,9 +3,6 @@ import Modal from "../../components/Modal/";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
-import format from "date-fns/format";
-import getYear from "date-fns/getYear";
-import getMonth from "date-fns/getYear";
 import { ErrorMessage } from "@hookform/error-message";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
@@ -18,26 +15,10 @@ function FormCreateEmployee() {
   const [showModal, setShowModal] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const dispatch = useDispatch();
+  const maxdate = new Date();
+  maxdate.setDate(maxdate.getDate() - 1);
 
-  const range = (start, end) => {
-    return new Array(end - start).fill().map((d, i) => i + start);
-  };
-  const years = range(1940, getYear(new Date()) + 1, 1);
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -142,80 +123,20 @@ function FormCreateEmployee() {
                   </label>
                   <div className="col-sm-12">
                     <Controller
-                      id="dateBirth"
                       name="dateBirth"
                       control={control}
                       render={({ field }) => (
                         <DatePicker
-                          renderCustomHeader={({
-                            date,
-                            changeYear,
-                            changeMonth,
-                            decreaseMonth,
-                            increaseMonth,
-                            prevMonthButtonDisabled,
-                            nextMonthButtonDisabled,
-                          }) => (
-                            <div
-                              style={{
-                                margin: 10,
-                                display: "flex",
-                                justifyContent: "center",
-                              }}
-                            >
-                              <button
-                                onClick={decreaseMonth}
-                                disabled={prevMonthButtonDisabled}
-                              >
-                                {"<"}
-                              </button>
-                              <select
-                                value={getYear(date)}
-                                onChange={({ target: { value } }) =>
-                                  changeYear(value)
-                                }
-                              >
-                                {years.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </select>
-
-                              <select
-                                value={months[getMonth(date)]}
-                                onChange={({ target: { value } }) =>
-                                  changeMonth(months.indexOf(value))
-                                }
-                              >
-                                {months.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </select>
-
-                              <button
-                                onClick={increaseMonth}
-                                disabled={nextMonthButtonDisabled}
-                              >
-                                {">"}
-                              </button>
-                            </div>
-                          )}
                           showIcon
                           toggleCalendarOnIconClick
-                          onChange={(date) =>
-                            field.onChange(
-                              format(date, "MM/dd/yyyy", {
-                                awareOfUnicodeTokens: true,
-                              })
-                            )
-                          }
+                          showMonthDropdown
+                          showYearDropdown
+                          dropdownMode="select"
+                          maxDate={maxdate}
+                          onChange={(date) => field.onChange(date)}
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
-                          dateFormat="MM/D/YYYY"
                           id="dateBirth"
                         />
                       )}
@@ -242,14 +163,7 @@ function FormCreateEmployee() {
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
-                          dateFormat="MM/D/YYYY"
-                          onChange={(date) =>
-                            field.onChange(
-                              format(date, "MM/dd/yyyy", {
-                                awareOfUnicodeTokens: true,
-                              })
-                            )
-                          }
+                          onChange={(date) => field.onChange(date)}
                         />
                       )}
                     />
