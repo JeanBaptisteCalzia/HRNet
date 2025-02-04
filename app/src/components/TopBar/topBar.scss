@@ -2,6 +2,16 @@ header {
   background-color: black;
   padding: 1rem 1rem;
 
+  .btn:focus-visible,
+  .btn:focus,
+  :not(.btn-check) + .btn:active {
+    color: black;
+    background-color: white;
+    border-color: white;
+    outline: 0;
+    box-shadow: none;
+  }
+
   nav {
     display: flex;
     justify-content: space-between;
