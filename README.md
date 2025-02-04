@@ -19,6 +19,7 @@ Transform an HR management application with legacy code into a React application
 - [@hookform/error-message](https://www.npmjs.com/package/@hookform/error-message) : ^2.0.1
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) : ^2.5.0
 - [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/download/#npm) : ^5.3.3
+- [date-fns](https://www.npmjs.com/package/date-fns) : ^4.1.0
 - [prop-types](https://www.npmjs.com/package/prop-types) : ^15.8.1
 - [react](https://fr.react.dev/) : ^18.3.1
 - [react-bootstrap](https://www.npmjs.com/package/react-bootstrap) : ^2.10.8

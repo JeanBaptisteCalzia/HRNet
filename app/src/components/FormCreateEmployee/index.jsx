@@ -3,6 +3,7 @@ import Modal from "../../components/Modal/";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
+import format from "date-fns/format";
 import { ErrorMessage } from "@hookform/error-message";
 import { states } from "../../data/states/";
 import { department } from "../../data/department/";
@@ -27,7 +28,6 @@ function FormCreateEmployee() {
     control,
     formState: { errors, isSubmitSuccessful },
   } = useForm({ mode: "onSubmit" });
-  
 
   const defaultValues = {
     firstName: "",
@@ -134,7 +134,13 @@ function FormCreateEmployee() {
                           showYearDropdown
                           dropdownMode="select"
                           maxDate={maxdate}
-                          onChange={(date) => field.onChange(date)}
+                          onChange={(date) =>
+                            field.onChange(
+                              format(date, "MM/dd/yyyy", {
+                                awareOfUnicodeTokens: true,
+                              })
+                            )
+                          }
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
@@ -164,7 +170,13 @@ function FormCreateEmployee() {
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
-                          onChange={(date) => field.onChange(date)}
+                          onChange={(date) =>
+                            field.onChange(
+                              format(date, "MM/dd/yyyy", {
+                                awareOfUnicodeTokens: true,
+                              })
+                            )
+                          }
                         />
                       )}
                     />
