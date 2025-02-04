@@ -338,10 +338,18 @@ function FormCreateEmployee() {
         <Modal
           isShow={showModal}
           isClose={() => {
-            setShowModal((prev) => !prev);
+            setShowModal();
           }}
-          content="Employee Created!"
-        />
+          isFading={true}
+          isSlideIn={false}
+          isCloseBtn={true}
+          isCloseBtnInsideModal={true}
+          borderRadius=".5"
+        >
+          <div className="dialog-body">
+            <h1>Employee created !</h1>
+          </div>
+        </Modal>
       )}
       {errors?.root?.server && <h3>Form submit failed.</h3>}
     </>
