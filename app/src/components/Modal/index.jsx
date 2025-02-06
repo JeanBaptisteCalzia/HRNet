@@ -31,7 +31,7 @@ function Modal({
   return isShow ? (
     <div className={`dialog-bg ${isFading ? "fading" : ""}`} onClick={isClose}>
       <div
-        className={`dialog-content ${isSlideIn ? "show" : ""}`}
+        className={`dialog-content ${isSlideIn ? "slide-in" : ""}`}
         style={{
           borderRadius: borderRadius + "rem",
         }}

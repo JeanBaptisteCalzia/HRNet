@@ -341,7 +341,7 @@ function FormCreateEmployee() {
             setShowModal();
           }}
           isFading={true}
-          isSlideIn={false}
+          isSlideIn={true}
           isCloseBtn={true}
           isCloseBtnInsideModal={true}
           borderRadius=".5"
