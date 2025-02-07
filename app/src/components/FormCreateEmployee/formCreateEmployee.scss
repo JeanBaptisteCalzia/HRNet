@@ -32,6 +32,10 @@ form {
     color: white;
   }
 
+  .react-datepicker__close-icon::after {
+    background-color: #98ac3b;
+  }
+
   .form-control:focus {
     color: black;
     background-color: white;
