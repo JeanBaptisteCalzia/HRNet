@@ -58,7 +58,7 @@ function Modal({
 }
 
 Modal.propTypes = {
-  isShow: PropTypes.bool.isRequired,
+  isShow: PropTypes.bool,
   isClose: PropTypes.func.isRequired,
   isFading: PropTypes.bool,
   isSlideIn: PropTypes.bool,
