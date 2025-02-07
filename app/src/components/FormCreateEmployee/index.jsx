@@ -134,13 +134,15 @@ function FormCreateEmployee() {
                           showYearDropdown
                           dropdownMode="select"
                           maxDate={maxdate}
-                          onChange={(date) =>
-                            field.onChange(
-                              format(date, "MM/dd/yyyy", {
-                                awareOfUnicodeTokens: true,
-                              })
-                            )
-                          }
+                          onChange={(date) => {
+                            if (date === null || date === undefined) {
+                              field.onChange(date);
+                            } else {
+                              field.onChange(format(date, "MM/dd/yyyy"));
+                            }
+                          }}
+                          dateFormat="MM/dd/yyyy"
+                          isClearable
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
@@ -170,13 +172,15 @@ function FormCreateEmployee() {
                           selected={field.value}
                           placeholderText="Select date"
                           className="form-control"
-                          onChange={(date) =>
-                            field.onChange(
-                              format(date, "MM/dd/yyyy", {
-                                awareOfUnicodeTokens: true,
-                              })
-                            )
-                          }
+                          isClearable
+                          dateFormat="MM/dd/yyyy"
+                          onChange={(date) => {
+                            if (date === null || date === undefined) {
+                              field.onChange(date);
+                            } else {
+                              field.onChange(format(date, "MM/dd/yyyy"));
+                            }
+                          }}
                         />
                       )}
                     />
