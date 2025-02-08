@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home/";
 import Employee from "./pages/Employee/";
 import Error from "./components/Error/";
@@ -13,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <StyleSheetManager shouldForwardProp={isValidProp}>
-        <Router>
+        <Router basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/employee" element={<Employee />} />
