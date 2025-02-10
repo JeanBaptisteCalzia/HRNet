@@ -26,7 +26,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
             id="search"
             type="text"
             className="form-control"
-            placeholder="Filter By Name"
+            placeholder="Search"
             aria-label="Search Input"
             value={filterText}
             onChange={onFilter}
@@ -116,8 +116,26 @@ function Employee() {
   const filteredItems = dataTable
     .filter(
       (item) =>
-        item.firstName &&
-        item.firstName.toLowerCase().includes(filterText.toLowerCase())
+        (item.firstName &&
+          item.firstName.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.lastName &&
+          item.lastName.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.startDate &&
+          item.startDate.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.department?.label &&
+          item.department?.label
+            .toLowerCase()
+            .includes(filterText.toLowerCase())) ||
+        (item.dateBirth &&
+          item.dateBirth.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.street &&
+          item.street.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.city &&
+          item.city.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.state?.label &&
+          item.state?.label.toLowerCase().includes(filterText.toLowerCase())) ||
+        (item.zipCode &&
+          item.zipCode.toLowerCase().includes(filterText.toLowerCase()))
     )
     .reverse();
 
