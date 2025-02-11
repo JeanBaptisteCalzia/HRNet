@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import "../../components/TopBar/topBar.scss";
 
@@ -17,5 +18,11 @@ function Header({ link, label, hasBtn }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  link: PropTypes.string,
+  label: PropTypes.string,
+  hasBtn: PropTypes.bool,
+};
 
 export default Header;
