@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useMemo, useEffect } from "react";
 // import Table from "../../components/Table/"; // Custom component
 import TopBar from "../../components/TopBar/";
@@ -194,5 +195,11 @@ function Employee() {
     </>
   );
 }
+
+FilterComponent.propTypes = {
+  filterText: PropTypes.string,
+  onFilter: PropTypes.func,
+  onClear: PropTypes.func,
+};
 
 export default Employee;
