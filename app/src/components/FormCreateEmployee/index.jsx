@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Modal from "../../components/Modal/";
+// import Modal from "../../components/Modal/";
+import Modal from "react-modal-jbc";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
