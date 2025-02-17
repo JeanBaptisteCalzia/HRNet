@@ -1,22 +1,9 @@
 import PropTypes from "prop-types";
 import { useState, useMemo, useEffect } from "react";
-// import Table from "../../components/Table/"; // Custom component
 import TopBar from "../../components/TopBar/";
 import DataTable from "react-data-table-component";
 import { useSelector, useDispatch } from "react-redux";
 import { getLocalStorageData as getLocalStorageDataAction } from "../../redux/dataSlice";
-// Custom component
-// const theadData = [
-//   "First Name",
-//   "Last Name",
-//   "Start Date",
-//   "Department",
-//   "Date of Birth",
-//   "Street",
-//   "City",
-//   "State",
-//   "Zip Code",
-// ];
 
 const FilterComponent = ({ filterText, onFilter, onClear }) => (
   <>
@@ -186,7 +173,6 @@ function Employee() {
                   subHeaderComponent={subHeaderComponentMemo}
                   persistTableHead={true}
                 />
-                {/* <Table theadData={theadData} tbodyData={tbodyData} /> */}
               </div>
             </div>
           </div>
